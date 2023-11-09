@@ -1,7 +1,17 @@
-export default function App() {
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom';
+
+const App = () => {
   return (
-    <h1 className="text-4xl font-bold underline">
-      Hello world!
-    </h1>
+    <>
+      <Header />
+      <main className='py-3'>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   )
 }
+
+export default App;
