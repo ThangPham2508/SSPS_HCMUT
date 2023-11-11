@@ -1,4 +1,5 @@
 import { Typography } from "@material-tailwind/react";
+import logo from '../assets/logo.png'
 
 const LINKS = [
   {
@@ -17,23 +18,23 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <footer className="relative w-full">
+    <footer className="relative w-full bg-blue-fill bg-cover">
       <div className="mx-auto w-full max-w-7xl px-8">
-        <div className="grid grid-cols-2 justify-between gap-4 md:grid-cols-2">
-          <div className="grid grid-cols-10 items-center">
-            <div className="col-span-1">Logo</div>
-            <div className="flex flex-col col-span-9">
-              <Typography variant="small">TRƯỜNG ĐẠI HỌC BÁCH KHOA</Typography>
-              <Typography variant="small" className="font-bold">
+        <div className="grid grid-cols justify-between gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-5 lg:grid-cols-10 items-center gap-y-3">
+            <img className="col-span-2" src={logo} alt="logo" />
+            <div className="flex flex-col col-span-3 lg:col-span-8">
+              <Typography variant="small" color="white">TRƯỜNG ĐẠI HỌC BÁCH KHOA</Typography>
+              <Typography variant="small" color="white" className="font-bold">
                 HỆ THỐNG IN ẤN SINH VIÊN
               </Typography>
             </div>
             <div className="col-span-10">
-              <Typography>
+              <Typography color="white" className="mb-3 text-justify">
                 Cơ sở Lý Thường Kiệt: 268 Lý Thường Kiệt, Phường 14, Quận 10,
                 TP. HCM
               </Typography>
-              <Typography>
+              <Typography color="white" className="text-justify">
                 Cơ sở Dĩ An: Khu phố Tân Lập, Phường Đông Hòa, TP. Dĩ An, Tỉnh
                 Bình Dương
               </Typography>
@@ -44,8 +45,8 @@ const Footer = () => {
               <ul key={title} className="ps-5">
                 <Typography
                   variant="small"
-                  color="blue-gray"
-                  className="mb-3 font-medium opacity-40"
+                  color="white"
+                  className="my-3 font-medium opacity-50"
                 >
                   {title}
                 </Typography>
@@ -54,7 +55,7 @@ const Footer = () => {
                     <Typography
                       as="a"
                       href="#"
-                      color="gray"
+                      color="white"
                       className="py-1.5 font-normal transition-colors hover:text-blue-gray-900"
                     >
                       {link}
@@ -68,7 +69,8 @@ const Footer = () => {
         <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
           <Typography
             variant="small"
-            className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
+            color="white"
+            className="mb-4 text-center font-normal md:mb-0"
           >
             &copy; {currentYear} Bản quyền thuộc Trường Đại học Bách Khoa -
             ĐHQG-HCM
@@ -77,6 +79,7 @@ const Footer = () => {
             <Typography
               as="a"
               href="#"
+              color="white"
               className="opacity-80 transition-opacity hover:opacity-100"
             >
               <svg
@@ -95,6 +98,7 @@ const Footer = () => {
             <Typography
               as="a"
               href="#"
+              color="white"
               className="opacity-80 transition-opacity hover:opacity-100"
             >
               <svg
@@ -113,6 +117,7 @@ const Footer = () => {
             <Typography
               as="a"
               href="#"
+              color="white"
               className="opacity-80 transition-opacity hover:opacity-100"
             >
               <svg
@@ -127,6 +132,7 @@ const Footer = () => {
             <Typography
               as="a"
               href="#"
+              color="white"
               className="opacity-80 transition-opacity hover:opacity-100"
             >
               <svg
@@ -145,6 +151,7 @@ const Footer = () => {
             <Typography
               as="a"
               href="#"
+              color="white"
               className="opacity-80 transition-opacity hover:opacity-100"
             >
               <svg

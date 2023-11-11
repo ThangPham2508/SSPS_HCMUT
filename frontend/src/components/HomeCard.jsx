@@ -9,7 +9,7 @@ const HomeCard = ({text, imageUrl}) => {
   return (
     <Card
       shadow={false}
-      className="relative grid h-96 w-72 items-end justify-center overflow-hidden text-center"
+      className="relative grid h-96 w-full lg:w-72 items-end justify-center overflow-hidden text-center transform transition duration-500 hover:scale-110"
     >
       <CardHeader
         floated={false}
