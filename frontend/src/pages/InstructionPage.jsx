@@ -1,7 +1,5 @@
 const InstructionPage = () => {
-  return (
-    <div>InstructionPage</div>
-  )
-}
+  return <div>InstructionPage</div>;
+};
 
-export default InstructionPage
+export default InstructionPage;

@@ -4,12 +4,12 @@ import {
   CardBody,
   Typography,
 } from "@material-tailwind/react";
- 
-const HomeCard = ({text, imageUrl}) => {
+
+const HomeCard = ({ text, imageUrl }) => {
   return (
     <Card
       shadow={false}
-      className="relative grid h-96 w-full lg:w-72 items-end justify-center overflow-hidden text-center transform transition duration-500 hover:scale-110"
+      className="relative grid h-96 w-full transform items-end justify-center overflow-hidden text-center transition duration-500 hover:scale-110 lg:w-72"
     >
       <CardHeader
         floated={false}
@@ -19,7 +19,7 @@ const HomeCard = ({text, imageUrl}) => {
       >
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
       </CardHeader>
-      <CardBody className="relative py-14 px-6 md:px-12">
+      <CardBody className="relative px-6 py-14 md:px-12">
         <Typography
           color="white"
           className="mb-6 text-lg font-bold leading-[1.5]"
@@ -29,6 +29,6 @@ const HomeCard = ({text, imageUrl}) => {
       </CardBody>
     </Card>
   );
-}
+};
 
 export default HomeCard;

@@ -13,8 +13,8 @@ const HomePage = () => {
   return (
     <div className="flex flex-col items-center bg-white-fill">
       <HomeCarousel />
-      <div className="flex flex-col items-center gap-10 mt-10">
-        <Typography variant="h2" className="text-2xl text-center" color="blue">
+      <div className="mt-10 flex flex-col items-center gap-10">
+        <Typography variant="h2" className="text-center text-2xl" color="blue">
           SSPS CUNG CẤP DỊCH VỤ
         </Typography>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-20">
@@ -23,11 +23,11 @@ const HomePage = () => {
           <HomeCard text="Thanh toán trực tuyến, đa nền tảng" />
         </div>
       </div>
-      <div className="flex flex-col items-center gap-10 my-10">
-        <Typography variant="h2" className="text-2xl text-center" color="blue">
+      <div className="my-10 flex flex-col items-center gap-10">
+        <Typography variant="h2" className="text-center text-2xl" color="blue">
           SSPS CAM KẾT MANG ĐẾN DỊCH VỤ
         </Typography>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-10 justify-items-center">
+        <div className="grid grid-cols-1 justify-items-center gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           <SimpleCard
             icon={<FaceSmileIcon className="w-28" />}
             headertext="THÂN THIỆN"

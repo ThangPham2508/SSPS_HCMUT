@@ -1,5 +1,5 @@
 import { Typography } from "@material-tailwind/react";
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
 
 const LINKS = [
   {
@@ -20,11 +20,13 @@ const Footer = () => {
   return (
     <footer className="relative w-full bg-blue-fill bg-cover">
       <div className="mx-auto w-full max-w-7xl px-8">
-        <div className="grid grid-cols justify-between gap-4 md:grid-cols-2">
-          <div className="grid grid-cols-5 lg:grid-cols-10 items-center gap-y-3">
+        <div className="grid-cols grid justify-between gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-5 items-center gap-y-3 lg:grid-cols-10">
             <img className="col-span-2" src={logo} alt="logo" />
-            <div className="flex flex-col col-span-3 lg:col-span-8">
-              <Typography variant="small" color="white">TRƯỜNG ĐẠI HỌC BÁCH KHOA</Typography>
+            <div className="col-span-3 flex flex-col lg:col-span-8">
+              <Typography variant="small" color="white">
+                TRƯỜNG ĐẠI HỌC BÁCH KHOA
+              </Typography>
               <Typography variant="small" color="white" className="font-bold">
                 HỆ THỐNG IN ẤN SINH VIÊN
               </Typography>

@@ -3,7 +3,10 @@ import { carousel1, carousel2, carousel3, carousel4 } from "../assets/carousel";
 
 const HomeCarousel = () => {
   return (
-    <Carousel className="w-full md:w-4/5 h-48 md:h-64 lg:h-96 md:rounded-xl md:mt-5" autoplay={false}>
+    <Carousel
+      className="h-48 w-full md:mt-5 md:h-64 md:w-4/5 md:rounded-xl lg:h-96"
+      autoplay={true}
+    >
       <div className="relative h-full w-full">
         <img
           src={carousel1}
@@ -11,7 +14,7 @@ const HomeCarousel = () => {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 grid h-full w-full items-center bg-black/50">
-          <div className="w-2/3 ms-5 md:w-1/2">
+          <div className="ms-5 w-2/3 md:w-1/2">
             <Typography
               variant="h1"
               color="white"
@@ -29,7 +32,7 @@ const HomeCarousel = () => {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 grid h-full w-full items-center bg-black/50">
-          <div className="w-4/5 ms-4 md:w-2/4 lg:w-1/3">
+          <div className="ms-4 w-4/5 md:w-2/4 lg:w-1/3">
             <Typography
               variant="h1"
               color="white"
@@ -47,7 +50,7 @@ const HomeCarousel = () => {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 grid h-full w-full items-center bg-black/50">
-          <div className="w-4/5 ms-4 md:w-2/4 lg:w-1/3">
+          <div className="ms-4 w-4/5 md:w-2/4 lg:w-1/3">
             <Typography
               variant="h1"
               color="white"
@@ -65,7 +68,7 @@ const HomeCarousel = () => {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 grid h-full w-full items-center bg-black/50">
-          <div className="w-4/5 ms-4 md:w-2/4 lg:w-1/3">
+          <div className="ms-4 w-4/5 md:w-2/4 lg:w-1/3">
             <Typography
               variant="h1"
               color="white"
