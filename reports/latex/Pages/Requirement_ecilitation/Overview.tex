@@ -1,0 +1,157 @@
+\subsection{Tổng quan}
+\subsubsection{Yêu cầu đề bài}
+$\indent$  Dưới đây là mô tả hệ thống Dịch vụ in thông minh dành cho sinh viên tại HCMUT: \par
+\begin{itemize}
+    \item \textbf{Mục tiêu:}
+    \begin{enumerate}[- ]
+        \item Xây dựng Dịch vụ in thông minh dành cho sinh viên (HCMUT\_SSPS) tại Trường đại học HCMUT.
+    \end{enumerate}
+    \item \textbf{Cơ cấu hệ thống:}
+    \begin{enumerate}[- ]
+        \item Hệ thống bao gồm một số máy in trải rộng trong khuôn viên trường.
+        \item Mỗi máy in có thông tin định danh gồm ID, tên thương hiệu/nhà sản xuất, kiểu máy in, mô tả ngắn gọn và địa điểm (bao gồm tên trường, tên tòa nhà, và số phòng).
+    \end{enumerate}
+    \item \textbf{Chức năng in ấn:}
+    \begin{enumerate}[- ]
+        \item Sinh viên có thể tải tài liệu lên hệ thống và lựa chọn máy in.
+        \item Sinh viên có thể chỉ định các thuộc tính in như khổ giấy, số trang, in một/hai mặt, số lượng bản sao, vv.
+        \item Loại tệp tài liệu được giới hạn và định cấu hình bởi Nhân viên Dịch vụ In ấn Sinh viên (SPSO).
+    \end{enumerate}
+    \item \textbf{Ghi log và lịch sử in ấn:}
+    \begin{enumerate}[- ]
+        \item Hệ thống ghi lại các thao tác in của tất cả sinh viên, bao gồm thông tin mã sinh viên, mã máy in, tên file, thời gian bắt đầu và kết thúc in, số trang cho từng khổ trang.
+    \end{enumerate}
+    \item \textbf{Quản lý lịch sử in ấn:}
+    \begin{enumerate}[- ]
+        \item SPSO có quyền xem lịch sử in ấn của tất cả sinh viên hoặc một sinh viên cụ thể trong khoảng thời gian xác định và trên một hoặc nhiều máy in.
+        \item Sinh viên cũng có quyền xem lịch sử in của họ cùng với tổng số trang đã in cho từng khổ trang.
+    \end{enumerate}
+    \item \textbf{Quản lý số trang in và thanh toán:}
+    \begin{enumerate}[- ]
+        \item Mỗi học kỳ, sinh viên được cấp một số trang in khổ A4 mặc định.
+        \item Sinh viên có thể mua thêm trang in thông qua tính năng Mua trang in và thanh toán trực tuyến qua các hệ thống như BKPay của trường.
+        \item Hệ thống chỉ cho phép in số trang không vượt quá số dư tài khoản của sinh viên. \textit{Lưu ý rằng trang A3 tương đương với hai trang A4.}
+    \end{enumerate}
+    \item \textbf{Quản lý máy in:}
+    \begin{enumerate}[- ]
+        \item SPSO có quyền quản lý máy in như thêm, bật, tắt máy in.
+        \item SPSO có quyền quản lý các cấu hình khác của hệ thống như số trang mặc định, ngày tháng cấp số trang mặc định cho sinh viên, và các loại tệp được hệ thống chấp nhận.
+    \end{enumerate}
+    \item \textbf{Báo cáo và lưu trữ:}
+    \begin{enumerate}[- ]
+        \item Hệ thống tạo tự động các báo cáo về việc sử dụng hệ thống in vào cuối mỗi tháng và mỗi năm, và lưu trữ chúng trong hệ thống để SPSO có thể xem bất cứ lúc nào.
+    \end{enumerate}
+    \item \textbf{Xác thực người dùng:}
+    \begin{enumerate}[- ]
+        \item Tất cả người dùng phải được xác thực bằng dịch vụ xác thực HCMUT\_SSO trước khi sử dụng hệ thống.
+    \end{enumerate}
+    \item \textbf{Giao diện người dùng:}
+    \begin{enumerate}[- ]
+        \item Hệ thống được cung cấp thông qua ứng dụng dựa trên web và ứng dụng di động để đáp ứng nhu cầu sử dụng trên nhiều nền tảng.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{Domain context}
+$\indent$ Hiện tại, số lượng sinh viên và cán bộ nhân viên trong trường rất đông, bên cạnh đó nhu cầu in ấn tài liệu cũng tăng cao. Tuy nhiên trong khuôn viên cả trường ở 2 cơ sở chỉ có 3, 4 điểm thực hiện việc in ấn tài liệu, do đó tồn tại rất nhiều các bất cập như sau:
+\begin{itemize}
+    \item Đến thời gian cao điểm như thi giữa kì, cuối kì nhu cầu in ấn tăng đột biến, dẫn đến mỗi lần thực hiện in ấn phải xếp hàng chờ lâu, không chủ động được thời gian cho mỗi cá nhân.
+    \item Vì lệ thuộc vào vấn đề nhân công khi cần người điều chỉnh bản in cho phù hợp nên số lượng máy bị giới hạn.
+    \item Thời gian làm việc của các nơi in ấn bị giới hạn trong các khoảng thời gian nhất định trong ngày.
+    \item Không chủ động trong việc điều chỉnh các cấu hình của trang in vì có thể người thực hiện việc in ấn hiểu sai các yêu cầu của khách hàng.
+\end{itemize}
+$\indent$ Nhận thấy những vấn đề bất cập đã nêu trên nên hệ thống in thông minh được ra đời ( HCMUT\_SSPS) để phục vụ cũng như giải quyết một phần các vấn đề trên. \par
+
+
+\subsubsection{Các bên liên quan và nhu cầu của họ}
+\begin{itemize}
+    \item \textbf{Sinh viên và cán bộ (người dùng cuối):}
+    \begin{enumerate}[- ]
+        \item Hệ thống in phải đủ sự tiện lợi để có thể in một cách nhanh chóng từ nhiều địa điểm khác nhau trong khuôn viên trường
+        \item Có thể xem lịch sử in
+        \item Hệ thống phải có giao diện thân thiện, có thể được truy cập từ web hoặc mobile app
+        \item Chi phí in rẻ và thời gian chờ đợi máy in nhanh.
+    \end{enumerate}
+
+    \item \textbf{Phòng đào tạo - Ban giám hiệu:}
+    \begin{enumerate}[- ]
+        \item Hệ thống phải phục vụ được nhu cầu cho toàn bộ sinh viên nhà trường và cán bộ giáo viên
+        \item Hệ thống phải được liên kết giữa 2 cơ sở
+        \item Hoạt động vào khoảng thời gian 6h30 - 20h30 từ thứ 2 đến thứ 7 hàng tuần
+        \item Hệ thống phải đảm bảo không vi phạm các chính sách của nhà trường.
+    \end{enumerate}
+
+    \item \textbf{Phòng tài chính:}
+    \begin{enumerate}[- ]
+        \item Các giao dịch thông qua hệ thống đều được liên kết với tài khoản OCB để có thể dễ dàng xem được lịch sử các lần giao dịch
+        \item Xem được các báo cáo tài chính mỗi tháng.
+    \end{enumerate}
+
+    \item \textbf{SPSO:}
+    \begin{enumerate}[- ]
+        \item Có trách nhiệm quản lý tài khoản và số lượng giấy in của mỗi sinh viên
+        \item Kiểm tra tình trạng máy in, có thể hoàn trả lại máy in nếu xảy ra lỗi
+        \item SPSO có thể kiểm duyệt được nội dung của những tài liệu mà sinh viên muốn in để có thể đảm bảo không in những tài liệu không được phép
+        \item SPSO có thể tùy chỉnh số lượng giấy in mặc định phát cho mỗi sinh viên vào mỗi đầu học kỳ
+        \item SPSO có thể tiếp nhận những phản hồi của sinh viên và cán bộ giáo viên về những sự bất tiện và những lỗi của máy in.
+    \end{enumerate}
+
+    \item \textbf{IT Staff:}
+    \begin{enumerate}[- ]
+        \item Có thể tắt hệ thống để bảo trì
+        \item Có thể tắt một số tính năng nhất định để kiểm tra lỗi
+        \item Có thể chặn các sinh viên đã vi phạm quy định khi xài máy in hoặc in những tài liệu không phù hợp
+        \item Có thể gửi tin nhắn thông báo về hệ thống.
+    \end{enumerate}
+
+    \item \textbf{Ethic manager (người kiểm duyệt nội dung):}
+    \begin{enumerate}[- ]
+        \item Có thể xem lịch sử in.
+        \item Có thể tự động kiểm duyệt được nội dung trước khi in, cần 1 phút.
+    \end{enumerate}
+
+\end{itemize}
+
+
+\subsubsection{Lợi ích của các bên liên quan}\par
+
+\begin{itemize}
+    \item \textbf{Sinh viên và cán bộ (người dùng cuối):}
+    \begin{enumerate}[- ]
+        \item Được cung cấp dịch vụ in ấn thống minh, hoàn toàn tự động. 
+        \item Đăng nhập với một tài khoản duy nhất, không trùng lặp với người khác, cho phép cá nhân hóa việc in ấn.
+        \item In ấn tài liệu với những chức năng tiện lợi như in nhiều khổ giấy, in màu, hẹn giờ tự động in, ...
+        \item Được xem lịch sử in của bản thân
+        \item Có quyền khiếu nại và được bồi thường nếu có lỗi xảy ra.
+        \item Được đảm bảo bảo mật thông tin.
+        \item Được hỗ trợ chăm sóc khách hàng, giải đáp thắc mắc mọi lúc.
+    \end{enumerate}
+
+    \item \textbf{Phòng tài chính:}
+    \begin{enumerate}[- ]
+        \item Được truy xuất các báo cáo tài chính mỗi tháng.
+    \end{enumerate}
+
+    \item \textbf{SPSO:}
+    \begin{enumerate}[- ]
+        \item Dễ dàng theo dõi, kiểm soát tình hình của hệ thống SPSO. Như xem một cách chi tiết lịch sử in, thông tin cá nhân khách hàng.
+        \item Có quyền ngăn chặn in ấn tài liệu nhạy cảm, tài liệu bị cấm.
+        \item Có quyền thống kê về lượng giấy đã in, số giấy được mua, bản báo cáo về hệ thống, sao kê hàng tháng.
+        \item Được nghe đóng góp ý kiến, khiếu nại phản hồi từ khách hàng qua tính năng trên hệ thống
+    \end{enumerate}
+
+    \item \textbf{IT Staff:}
+    \begin{enumerate}[- ]
+        \item Được quyền tắt bật hệ thống để kiểm tra, bảo trì.
+        \item Được tắt một số tính năng nhất định để kiểm tra lỗi
+        \item Được quyền chặn những tài khoản spam, có hành vi sai phạm bị phát hiện và tố cáo.
+        \item Có quyền gửi tin nhắn thông báo hệ thống.
+    \end{enumerate}
+
+    \item \textbf{Ethic manager (người kiểm duyệt nội dung - quản trị đạo đức):}
+    \begin{enumerate}[- ]
+        \item Được xem nội dung in của người sử dụng
+        \item Hủy thao tác in trực tiếp
+        \item Báo cáo tài khoản có hành vi xấu
+    \end{enumerate}
+
+\end{itemize}
