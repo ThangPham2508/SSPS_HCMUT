@@ -9,7 +9,7 @@ import {
   Option,
 } from "@material-tailwind/react";
 import Footer from "../components/Footer";
-import logo from "../assets/logoo.png";
+import logo from "../assets/logo.png";
 import CookieDialog from "../components/Dialog";
 import { setCustomer, setAdmin } from "../slices/authslice";
 import { useNavigate } from "react-router-dom";

@@ -89,8 +89,8 @@ const Header = ({ role }) => {
       fullWidth={true}
     >
       <div className="flex w-full items-center justify-between text-blue-gray-900">
-        <Link to="/" className="grid grid-cols-5 items-center gap-2">
-          <img className="col-span-1 w-24" src={logo} alt="logo" />
+        <Link to="/" className="grid grid-cols-5 items-center gap-3">
+          <img className="col-span-1 w-16" src={logo} alt="logo" />
           <div className="col-span-4 flex flex-col">
             <Typography variant="small" color="white">
               TRƯỜNG ĐẠI HỌC BÁCH KHOA

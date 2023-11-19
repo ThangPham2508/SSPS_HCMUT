@@ -1,4 +1,4 @@
-import logo from "../assets/logoo.png";
+import logo from "../assets/logo.png";
 import {
   Typography,
   Card,

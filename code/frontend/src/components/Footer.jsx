@@ -21,8 +21,8 @@ const Footer = () => {
     <footer className="relative w-full bg-blue-fill bg-cover">
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="grid-cols grid justify-between gap-4 md:grid-cols-2">
-          <div className="grid grid-cols-5 items-center gap-y-3 lg:grid-cols-10">
-            <img className="col-span-2" src={logo} alt="logo" />
+          <div className="grid grid-cols-5 items-center lg:grid-cols-10">
+            <img className="col-span-2 w-20" src={logo} alt="logo" />
             <div className="col-span-3 flex flex-col lg:col-span-8">
               <Typography variant="small" color="white">
                 TRƯỜNG ĐẠI HỌC BÁCH KHOA
