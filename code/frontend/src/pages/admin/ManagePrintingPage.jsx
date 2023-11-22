@@ -1,10 +1,12 @@
 import React from "react";
 import { VerticalTabs } from "../../components/ManagePrintingPage/VerticalTab";
+//import { CookieDialog} from "../../components/ManagePrintingPage/Dialog";
 import docx from "../../assets/filetypeicon/docx.png"
 import jpg from "../../assets/filetypeicon/jpg.png"
 import pdf from "../../assets/filetypeicon/pdf.png"
 import svg from "../../assets/filetypeicon/svg.png"
 import xls from "../../assets/filetypeicon/xls.png"
+import plussign from "../../assets/filetypeicon/plus.png"
 import {
   Breadcrumbs,
   Button,
@@ -12,11 +14,15 @@ import {
   Card,
   ListItem,
   button,
+  Typography
 } from "@material-tailwind/react";
 import {
   Cog6ToothIcon,
+  Cog8ToothIcon,
+  MapIcon,
   FlagIcon
 } from "@heroicons/react/24/solid";
+import CookieDialog from "../../components/ManagePrintingPage/Dialog";
 
 // const fs = require('fs');
 // const path = require('path');
@@ -32,7 +38,7 @@ import {
 //     const filePath = path.join(folderPath, file);
 //     //         // Import the file
 //     const importedModule = require(filePath);
-    
+
 //     //         // Do something with the imported module if needed
 //     console.log(`Imported module from ${filePath}`);
 //   }
@@ -85,29 +91,45 @@ const ManagePrintingPage = () => {
   let _typeList = ['pdf', 'jpg', 'docx', 'xls', 'svg']
   let _pngList = [pdf, jpg, docx, xls, svg]
   let _buttonList = []
-  for (let type in _typeList){
+  for (let type in _typeList) {
     _buttonList.push(
-      <Button className="flex bg-red-700" style={{
-        margin:'20px'
-      }}>
-      <img className="flex w-16" src={_pngList[type]} alt={_typeList[type]} />
-      </Button>
-    )
+      // <Button className="w-30 bg-red-700 m-4">
+      //   <img className="" src={_pngList[type]} alt={_typeList[type]} />
+      // </Button>
+      <CookieDialog 
+        img = {<img className="" src={_pngList[type]} alt={_typeList[type]} />}
+        text = {<text>Bạn muốn xóa định dạng {_typeList[type]}</text>}
+        
+      />
+      )
   }
-  let newtabItems = createTabItem("Cài đặt tặng giấy", 1, React.createElement(FlagIcon, { className: "w-5 h-5" }),
-  <Card> 
-    <ButtonGroup class="grid grid-cols-2 gap-4 lg:grid-cols-4 bg-blue-200">
+  _buttonList.push(
+    // <Button className="w-30 bg-red-700 m-4">
+    //   <img className="" src={_pngList[type]} alt={_typeList[type]} />
+    // </Button>
+    <CookieDialog 
+      img = {<img className="" src={plussign} alt={'add'} />}
+      text = {<text>Bạn muốn thêm định dạng nào?</text>}
+      
+    />
+    )
+  let newtabItems = createTabItem(
+    "Cài đặt loại file in",
+    1,
+    React.createElement(MapIcon, { className: "w-5 h-5" }),
+    <div class="grid grid-cols-2 gap-8 lg:grid-cols-4 bg-blue-200">
       {_buttonList}
-    </ButtonGroup>
-  </Card>)
+    </div>)
   items.push(newtabItems)
-  newtabItems = createTabItem("Cài đặt tặng giấy", 2, 
-  <Card> 
-  </Card>)
+  newtabItems = createTabItem("Cài đặt tặng giấy", 2,
+  React.createElement(Cog6ToothIcon, { className: "w-5 h-5" }),
+    <Card>
+    </Card>)
   items.push(newtabItems)
-  newtabItems = createTabItem("Cài đặt tặng giấy", 3, 
-  <Card> 
-  </Card>)
+  newtabItems = createTabItem("Cài đặt tặng giấy", 3,
+  React.createElement(Cog8ToothIcon, { className: "w-5 h-5" }),
+    <Card>
+    </Card>)
   items.push(newtabItems)
   const componentStyle = {
     width: '200px',
@@ -116,32 +138,31 @@ const ManagePrintingPage = () => {
     textAlign: 'left'
     //backgroundColor: 'lightblue', 
   };
-  let aaa = VerticalTabs(items)
+  let VerticalTab = VerticalTabs(items)
   return (
-    <Card 
-    style={{
-      width : '100%',
-      paddingLeft: '4%', paddingRight:'4%', paddingTop: '6%', paddingBottom: '6%',
-      }}>
-      
-      <text style={{fontWeight : 'bold', fontSize : '30px'}}>
-        QUẢN LÝ IN ẤN
-      </text>
-      <Breadcrumbs>
-        <a href="../" className="opacity-60">
-          Trang chủ
-        </a>
-        <a href="#" className="opacity-60">
-          Quản lý in ấn
-        </a>
-        <a href="#">Cài đặt kiểu file in</a>
-      </Breadcrumbs>
-      {/* <text style={componentStyle}>
-        Menu
-      </text> */}
-      {aaa}
+    <div className="grid grid-rows-12 grids-cols-12 gap-5 m-5">
+      <div className="flex items-center h-20">
+        <Typography variant="h3" className="basis-1/5 font-bold" >
+          QUẢN LÝ IN ẤN
+        </Typography>
 
-    </Card>
+        <div className=" basis-4/5">
+          <Breadcrumbs>
+            <a href="../" className="opacity-60">
+              Trang chủ
+            </a>
+            <a href="#" className="opacity-60">
+              Quản lý in ấn
+            </a>
+            <a href="#">Cài đặt kiểu file in</a>
+          </Breadcrumbs>
+        </div>
+      </div>
+      {/* <text style={componentStyle}>
+          Menu
+        </text> */}
+      {VerticalTab}
+    </div>
   )
 };
 

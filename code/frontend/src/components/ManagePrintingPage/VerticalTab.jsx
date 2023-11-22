@@ -62,9 +62,9 @@ import {
             style={componentStyle}
                 //{icon}
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-start gap-2">
                 {icon}
-                <text style={{textAlign: 'left'}}>
+                <text>
                     {label}
                 </text>
               </div>
@@ -79,7 +79,7 @@ import {
           </Tab>
             ))} */}
         </TabsHeader>
-        <TabsBody style={{width : '60%', alignItems: 'flex-start', margin : '2%'}}>
+        <TabsBody style={{width : '80%', alignItems: 'flex-start', margin : '2%'}}>
           {data.map(({ value, desc }) => (
             <TabPanel key={value} value={value} className="py-0">
               {desc}
