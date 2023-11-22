@@ -1,0 +1,170 @@
+\subsubsection{Yêu cầu phi chức năng (non-functional)}
+
+$\indent$ Để đảm bảo đáp ứng tốt trải nghiệm của người dùng, trang web cần đáp ứng được các yêu cầu sau:
+
+% \input{performance}
+% % \input{Pages/Requirements/Non_Functions/performance}
+\subsubsubsection{Hiệu suất}
+% Tương tác tốt và nhanh, giảm thiểu lỗi, ... để trải nghiệm của khách hàng không bị gián đoạn và nhanh chóng. Trang web cần phải được theo dõi và bảo trì để đảm bảo hiệu suất luôn đạt mức tối ưu.
+
+$\indent$ Cần đảm bảo được các yêu cầu về hiệu suất sau:
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+    \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                     \\ \hline
+\multirow{7}{*} & \textbf{HS01}          & \begin{tabular}[c]{@{}l@{}}Yêu cầu phần cứng tối thiểu \\ cho hệ thống là 128MB Ram.\end{tabular}                                                                  \\ \cline{2-3} 
+                                    & \textbf{HS02}          & \begin{tabular}[c]{@{}l@{}}Thiết bị thông minh hỗ trợ kết\\ nối Internet, quét mã QR để truy \\ cập vào ứng dụng mà không cần\\ tải app.\end{tabular}              \\ \cline{2-3} 
+                                    & \textbf{HS03}          & Hệ thống hỗ trợ chạy realtime.                                                                                                                                     \\ \cline{2-3} 
+{\textbf{Hiệu suất}}                 & \textbf{HS04}          & \begin{tabular}[c]{@{}l@{}}Đảm bảo thời gian xử lý và tải\\ thông tin cho mỗi lần người dùng\\ thực hiện 1 thao tác tối đa 2 giây.\end{tabular}                    \\ \cline{2-3} 
+                                    & \textbf{HS05}          & \begin{tabular}[c]{@{}l@{}}Lượt truy cập đạt 100,000 lượt\\ tại cùng 1 thời điểm, đáp ứng nhu\\ cầu của 30,000 sinh viên và 5,000\\ cán bộ nhân viên.\end{tabular} \\ \cline{2-3} 
+                                    & \textbf{HS06}          & \begin{tabular}[c]{@{}l@{}}Tỉ lệ xảy ra lỗi khi người dùng\\ thực hiện 1 thao tác thấp hơn 0.1\%.\end{tabular}                                                      \\ \cline{2-3} 
+                                    & \textbf{HS07}          & \begin{tabular}[c]{@{}l@{}}Bảo trì trang web mỗi tháng 1 lần \\ và có thông báo cho người dùng \\ về khoảng thời gian bảo trì.\end{tabular}                        \\ \hline
+\end{tabular}
+\end{center}
+
+
+% \input{scalability}
+% % \input{Pages/Requirements/Non_Functions/availability}
+\subsubsubsection{Tính khả dụng}
+% Website cần phải giữ được tốc độ vận hành tương đối nhanh kể cả khi có một lượng lớn người dùng cùng truy cập website vào cùng một thời điểm. Ngoài ra website cũng cần thiết kế để có thể xử lý các yêu cầu khi lượng người dùng truy cập trung bình, lượng dịch vụ được cung cấp và các lượng tài nguyên khác tăng lên.
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+    \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                    & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                        \\ \hline
+\multirow{4}{*} & \textbf{KD01}          & \begin{tabular}[c]{@{}l@{}}Số lượng record về máy in trong\\ dữ liệu tầm 2 record cho mỗi tòa.\end{tabular}                                                           \\ \cline{2-3} 
+                                        & \textbf{KD02}          & \begin{tabular}[c]{@{}l@{}}Phải liên kết được giữa 2 cơ sở,\\ để người dùng có thể in ở bất cứ\\ cơ sở nào.\end{tabular}                                              \\ \cline{2-3} 
+{\textbf{Tính khả dụng}}                & \textbf{KD03}          & \begin{tabular}[c]{@{}l@{}}Cho phép in từ 6h30-20h30 mỗi \\ ngày. Ngoài khoảng thời gian trên\\ người dùng có thể hẹn lịch in. Hệ\\ thống vận hành từ 6h-23h59.\end{tabular} \\ \cline{2-3} 
+                                        & \textbf{KD05}          & \begin{tabular}[c]{@{}l@{}}Thông báo cho người dùng khi có\\ sự cố (mất điện, máy in bị trục trặc)\end{tabular}                                                       \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+
+% \input{security}
+% % \input{Pages/Requirements/Non_Functions/security}
+\subsubsubsection{Bảo mật}
+% Đảm bảo tính bảo mật và an ninh thông tin của khách hàng khi sử dụng các dịch vụ của website, đặc biệt là dịch vụ thanh toán trực tuyến và các thông tin cá nhân như địa chỉ, số cccd, ...
+$\indent$ Về phía người dùng:
+\begin{center}
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                                                                   & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                \\ \hline
+\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Bảo mật\\ người dùng\end{tabular}}} & \textbf{US01}          & \begin{tabular}[c]{@{}l@{}}Mật khẩu yêu cầu ít nhất 8 kí\\ tự, phải bao gồm chữ cái viêt\\ hoa, ký tự đặc biệt và chữ số.\end{tabular}                        \\ \cline{2-3} 
+                                                                                       & \textbf{US02}          & \begin{tabular}[c]{@{}l@{}}Tính năng "Quên mật khẩu" bằng cách\\ xác nhận thông qua mã OTP gửi về\\ email hoặc số điện thoại.\end{tabular}                    \\ \cline{2-3} 
+                                                                                       & \textbf{US03}          & \begin{tabular}[c]{@{}l@{}}Trường hợp người dùng đăng nhập sai\\ quá 5 lần sẽ tự động khóa tài khoản, để\\ mở khóa sẽ cần liên hệ quản trị viên.\end{tabular} 
+                                                                                                                \\ \cline{2-3} 
+                                                                                     & \textbf{US04}          & \begin{tabular}[c]{@{}l@{}}Cam kết bảo mật thông tin cho người \\ dùng, không bán thông tin cho bất cứ\\ bên nào.\end{tabular}  \\ \hline
+\end{tabular}
+
+\end{center}
+
+$\indent$ Về phía hệ thống:
+\begin{center}
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                                                                 & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                                                                   \\ \hline
+\multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Bảo mật\\ hệ thống\end{tabular}}} & \textbf{SS01}          & \begin{tabular}[c]{@{}l@{}}Các cookies gửi kèm với header của\\ request từ phía client hay được gửi kèm\\ với response từ phía server đều được mã\\ hóa bằng Json Web Token (JWT) trước \\ khi gửi.\end{tabular} \\ \cline{2-3} 
+                                                                                     & \textbf{SS02}          & \begin{tabular}[c]{@{}l@{}}Mã hóa các loại mật khẩu gồm mật khẩu\\ của tài khoản quản trị viên,.. bằng thuật\\ toán hash "sha256" trước khi lưu vào dữ\\ liệu.\end{tabular}                                                                                              \\ \hline
+\end{tabular}
+
+\end{center}
+
+
+% Bảo vệ trang web để tránh bị tấn công mạng ...
+
+% \input{usability}
+% % \input{Pages/Requirements/Non_Functions/usability}
+\subsubsubsection{Dễ sử dụng}
+$\indent$ Để đảm bảo người dùng mới có thể sử dụng trang web mà không cần tốn nhiều công sức với chỉ trong 30 phút sau training đối với với SPSO và có thể dùng ngay lập tức đối với người dùng thông thường thì trang web cần đảm bảo các yêu cầu sau:
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+    \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                 & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                               \\ \hline
+\multirow{4}{*} & \textbf{SD01}          & \begin{tabular}[c]{@{}l@{}}Thiết kế đơn giản, đẹp mắt, phù hợp\\ với đối tượng sinh viên, cán bộ nhân\\ viên của 1 trường đại học, tương tự\\ như BKEL.\end{tabular}         \\ \cline{2-3} 
+                                     & \textbf{SD02}          & Không có quảng cáo.                                                                                                                                                          \\ \cline{2-3} 
+{\textbf{Dễ sử dụng}}                     & \textbf{SD03}          & \begin{tabular}[c]{@{}l@{}}Các chức năng cần cung cấp thông tin\\ rõ ràng về chức năng để tránh gây hiểu\\ lầm.\end{tabular}                                                 \\ \cline{2-3} 
+                                     & \textbf{SD04}          & \begin{tabular}[c]{@{}l@{}}Các tùy chọn phải có màu sắc phân biệt\\ , khoảng cách không quá sát nhau (cách\\ nhau tối thiểu 5mm) để tráng trượt tay\\ khi chọn.\end{tabular} \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+
+
+% \input{reliability}
+% % \input{Pages/Requirements/Non_Functions/compliance}
+\subsubsubsection{Tính pháp lý}
+% Thông tin về các dịch vụ cũng như các nhà cung cấp dịch vụ cần phải được xác thực từ chính các nhà cung cấp. Ngoài ra, các công việc tính toán như việc thanh toán và số lượng đăng ký dịch vụ hiện tại cần phải được thực hiện một cách chính xác nhất.
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+    \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                   & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                   \\ \hline
+\multirow{2}{*}{\textbf{Tính pháp lý}} & \textbf{PL01}          & \begin{tabular}[c]{@{}l@{}}Cần phải tuân thủ các chính sách của\\ nhà trường đưa ra trong hợp đồng.\end{tabular} \\ \cline{2-3} 
+                                       & \textbf{PL02}          & \begin{tabular}[c]{@{}l@{}}Không vi phạm bản quyền, thương hiệu\\ của bên thứ ba.\end{tabular}                   \\ \hline
+\end{tabular}
+\end{center}
+
+
+% \input{compatibility}
+% % \input{Pages/Requirements/Non_Functions/compatibility}
+\subsubsubsection{Tính tương thích}
+
+\begin{center}
+    \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}      & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                                                                                             \\ \hline
+\textbf{Tính tương thích} & \textbf{TT01}          & \begin{tabular}[c]{@{}l@{}}Có khả năng vận hành trên nhiều trình\\ duyệt web như Google Chrome, Microsoft Edge,\\ FireFox, cũng như trên các hệ điều hành \\Window ((Window 10 22H2, Window 11 22H2),\\ Android (Android version 13 trở lên)\\ miễn là có kết nối Internet.\end{tabular} \\ \hline
+\end{tabular}
+\end{center}
+
+
+% \input{flexibility}
+% % \input{Pages/Requirements/Non_Functions/scalability}
+\subsubsubsection{Tính mở rộng}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+    \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu}                   & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                                                    \\ \hline
+\multirow{2}{*}{\textbf{Tính mở rộng}} & \textbf{MR01}          & \begin{tabular}[c]{@{}l@{}}Mỗi năm có số lượng sinh viên mới\\ khoảng 3000 sinh viên, do đó hệ thống\\ cần đáp ứng được lượng người dùng \\ mới này.\end{tabular} \\ \cline{2-3} 
+                                       & \textbf{MR02}          & \begin{tabular}[c]{@{}l@{}}Đảm bảo linh hoạt, dễ dàng mở rộng\\ để có thể thêm các chức năng và tính\\ năng mới trong tương lai.\end{tabular}                     \\ \hline
+\end{tabular}
+\end{center}
+
+
+% \input{multilingualism}
+% % \input{Pages/Requirements/Non_Functions/multilingualism}
+\subsubsubsection{Đa ngôn ngữ}
+% Hỗ trợ chuyển đổi ngôn ngữ website sang Tiếng Anh để phù hợp với yêu cầu của khách hàng từ khắp nơi trên thế giới khi đặt tour du lịch ở Việt Nam.
+\begin{center}
+  \begin{tabular}{|c|c|l|}
+\hline
+\textbf{Tên yêu cầu} & \textbf{Mã số yêu cầu} & \multicolumn{1}{c|}{\textbf{Chi tiết yêu cầu}}                                                                                             \\ \hline
+\textbf{Đa ngôn ngữ} & \textbf{ML01}          & \begin{tabular}[c]{@{}l@{}}Cần hỗ trợ chuyển đổi ngôn ngữ giữa\\ tiếng Anh và tiếng Việt để phù hợp với\\ nhu cầu người dùng.\end{tabular} \\ \hline
+\end{tabular}  
+\end{center}
+
+
