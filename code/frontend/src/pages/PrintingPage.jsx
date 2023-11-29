@@ -1,12 +1,11 @@
-// import { PrinterInfo } from "../components/PrinterInfo"
-import PrinterInfo from "../components/PrinterInfo";
-import AddPrinter from "../components/AddPrinter";
+import PrintingConfig from "../components/PrintingConfig"
+
 const PrintingPage = () => {
   return (
-    //<PrinterInfo/>
-
-    <AddPrinter/>
-  );
+    <>
+      <div>PrintingPage</div>
+      <PrintingConfig/>
+    </>
 }
 
 export default PrintingPage;
