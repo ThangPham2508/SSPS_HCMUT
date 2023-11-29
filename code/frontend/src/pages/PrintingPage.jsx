@@ -6,8 +6,6 @@ const PrintingPage = () => {
       <div>PrintingPage</div>
       <PrintingConfig/>
     </>
-    
-  )
 }
 
-export default PrintingPage
+export default PrintingPage;
