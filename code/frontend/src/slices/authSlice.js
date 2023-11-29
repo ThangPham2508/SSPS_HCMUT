@@ -1,25 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  role: null
+  userData: localStorage.getItem('userData')
+    ? JSON.parse(localStorage.getItem('userData'))
+    : null,
+  role: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCustomer: (state) => {
+    setCredentials: (state, action) => {
+      state.userData = action.payload;
       state.role = 'customer';
-    },
-    setAdmin: (state) => {
-      state.role = 'admin';
+      localStorage.setItem('userData', JSON.stringify(action.payload));
+
+      const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+      localStorage.setItem('expirationTime', expirationTime);
     },
     logout: (state) => {
+      state.userData = null;
       state.role = null;
+      localStorage.removeItem('userData');
+      localStorage.removeItem('expirationTime');
     },
   },
 });
 
-export const { setCustomer, setAdmin, logout } = authSlice.actions;
+export const { setCredentials, logout } = authSlice.actions;
 
 export default authSlice.reducer;

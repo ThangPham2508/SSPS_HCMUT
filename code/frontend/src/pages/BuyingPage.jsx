@@ -72,8 +72,8 @@ const HistoryPage = () => {
   return (
     <div className="grid grid-cols-5">
       <div className="bg-black">a</div>
-      <div className="col-span-2 flex flex-col p-5 gap-10">
-        <div className="flex flex-col items-center">
+      <div className="col-span-2 flex flex-col p-5 gap-5">
+        <div>
           <Typography variant="h4">Số giấy còn lại: 49 tờ A4</Typography>
           <div className="flex flex-col gap-5 self-center">
             <figure>

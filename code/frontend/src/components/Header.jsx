@@ -20,9 +20,11 @@ import {
 } from "@heroicons/react/24/outline";
 import ProfileMenu from "./ProfileMenu";
 import logo from "../assets/logo.png";
+import { useSelector } from "react-redux";
 
-const Header = ({ role }) => {
+const Header = () => {
   const [openNav, setOpenNav] = useState(false);
+  const role = useSelector((state) => state.auth.role);
 
   useEffect(() => {
     window.addEventListener(

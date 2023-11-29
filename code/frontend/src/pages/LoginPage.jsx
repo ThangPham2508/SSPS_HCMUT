@@ -11,28 +11,24 @@ import {
 import Footer from "../components/Footer";
 import logo from "../assets/logo.png";
 import CookieDialog from "../components/Dialog";
-import { setCustomer, setAdmin } from "../slices/authslice";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
   const [language, setLanguage] = useState("vie");
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const handleClick = async (e) => {
+    e.preventDefault();
+    window.location.href = "http://localhost:5000/auth/google";
+    /* try {
+      const res = await login().unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate("/");
+    } catch (err) {
+      // Ignore
+    } */
+  };
 
   const handleLanguageChange = (event) => {
     setLanguage(event);
-  };
-
-  const loginCustomer = () => {
-    dispatch(setCustomer());
-    navigate("/");
-  };
-
-  const loginAdmin = () => {
-    dispatch(setAdmin());
-    navigate("/");
   };
 
   return (
@@ -49,7 +45,7 @@ const LoginPage = () => {
             fullWidth
             className="font-normal"
             size="md"
-            onClick={loginCustomer}
+            onClick={handleClick}
           >
             {language === "vie"
               ? "Cán bộ / Sinh viên trường ĐH Bách Khoa Tp.HCM"
@@ -59,7 +55,7 @@ const LoginPage = () => {
             variant="outlined"
             fullWidth
             className="font-normal"
-            onClick={loginAdmin}
+            onClick={handleClick}
           >
             {language === "vie"
               ? "Nhân viên dịch vụ in ấn sinh viên - SPSO"

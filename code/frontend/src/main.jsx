@@ -12,6 +12,7 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ManagePrinterPage from "./pages/admin/ManagePrinterPage";
 import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
 import CustomerServicePage from "./pages/admin/CustomerServicePage";
+import BuyingPage from "./pages/BuyingPage.jsx";
 import SSOPage from "./pages/SSOPage";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
         <Route path="" element={<CustomerRoute />}>
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/buying" element={<BuyingPage />} />
         </Route>
         <Route path="" element={<AdminRoute />}>
           <Route path="/admin/printer-manage" element={<ManagePrinterPage />} />
