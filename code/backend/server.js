@@ -4,11 +4,16 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import cookieSession from "cookie-session";
 dotenv.config();
-import authRoutes from "./routes/authRoutes.js";
 import config from "./config.js";
 import cors from "cors";
-import morgan from 'morgan';
-import connectDB from './config/db.js';
+import morgan from "morgan";
+import connectDB from "./config/db.js";
+
+import authRoutes from "./routes/authRoutes.js";
+import printerRoutes from "./routes/printerRoutes.js";
+import fileRoutes from "./routes/fileRoutes.js";
+import logRoutes from "./routes/logRoutes.js";
+import configRoutes from "./routes/configRoutes.js";
 
 connectDB();
 
@@ -16,7 +21,7 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
@@ -55,6 +60,11 @@ app.use(
 );
 
 app.use("/auth", authRoutes);
+app.use("/printer", printerRoutes);
+app.use("/file", fileRoutes);
+app.use("/log", logRoutes);
+app.use("/config", configRoutes);
+
 app.use("/session", (req, res) => {
   console.log("Current user is:", req.user);
   if (req.user) {
