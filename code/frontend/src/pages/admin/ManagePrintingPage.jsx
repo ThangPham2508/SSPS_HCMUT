@@ -22,41 +22,17 @@ import {
   MapIcon,
   FlagIcon
 } from "@heroicons/react/24/solid";
-//  import CookieDialog from "../../components/ManagePrintingPage/Dialog";
 
-// const fs = require('fs');
-// const path = require('path');
-
-// // // Specify the path to the folder containing your files
-// const folderPath = "../../assets/filetypeicon";
-
-// // // // Read files in the folder
-// fs.readdirSync(folderPath).forEach(file => {
-//   //     // Check if the file is a icon png file
-//   if (path.extname(file) === '.png') {
-//     //         // Construct the full path to the file
-//     const filePath = path.join(folderPath, file);
-//     //         // Import the file
-//     const importedModule = require(filePath);
-
-//     //         // Do something with the imported module if needed
-//     console.log(`Imported module from ${filePath}`);
-//   }
-// });
-
-function createTabItem(label, value, icon, desc) {
-  return {
-    label: label, value: value, icon: icon, desc: desc
-  }
-}
 const ManagePrintingPage = () => {
   let items = [
     /*
     {
       label: "Cài đặt tặng giấy",
       value: "1",
+
       icon: <Cog6ToothIcon />,
       desc: <Card>123123123</Card>,
+
     },
     {
       label: "Cài đặt kiểu file in",

@@ -55,14 +55,13 @@ import {
         indicatorProps={{
           className: "bg-gray-900/10 shadow-none !text-gray-900",
         }}
-      >
         {items.map(({ label, value, icon }) => (
           <Tab
             key={value}
             value={value}
             className="place-items-start"
             style={componentStyle}
-                //{icon}
+               
             >
               <div className="flex items-start gap-2">
                 {icon}
