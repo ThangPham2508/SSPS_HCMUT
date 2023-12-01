@@ -56,7 +56,7 @@ import {
         
         >
           {data.map(({ label, value, icon }) => (
-            <Tab key={value} value={value} className="place-items-start" 
+            <Tab key={value} value={value} className="place-items-start ư" 
             style={componentStyle}
                 //{icon}
             >
@@ -77,7 +77,7 @@ import {
           </Tab>
             ))} */}
         </TabsHeader>
-        <TabsBody style={{width : '60%', alignItems: 'flex-start'}}>
+        <TabsBody style={{width : '100%', alignItems: 'flex-start'}}>
           {data.map(({ value, desc }) => (
             <TabPanel key={value} value={value} className="py-0">
               {desc}

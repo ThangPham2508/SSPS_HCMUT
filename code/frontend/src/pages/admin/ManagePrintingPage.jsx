@@ -8,15 +8,17 @@ import {
   Cog6ToothIcon,
   FlagIcon
 } from "@heroicons/react/24/solid";
+import PrinterItem from "../../components/PrinterItem";
+//import FormPaper from "../../components/FormPaper";
 const ManagePrintingPage = () => {
   let items = [
     {
       label: "Cài đặt tặng giấy",
       value: "1",
       //icon: React.createElement(Cog6ToothIcon, { className: "w-5 h-5" }),
-      desc: <Card>
-        123123123
-          </Card>,
+      desc: 
+      <PrinterItem/>,
+      //<FormPaper/>
     },
     {
       label: "Cài đặt kiểu file in",
