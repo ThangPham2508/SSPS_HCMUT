@@ -1,4 +1,4 @@
-import { Card, Input, Checkbox, IconButton, Typography } from "@material-tailwind/react";
+import { Card, Input, IconButton, Typography } from "@material-tailwind/react";
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 
 const PrinterInfo = ({ID, location, number, queue, brand, description, status}) => {
@@ -17,11 +17,6 @@ const PrinterInfo = ({ID, location, number, queue, brand, description, status}) 
                 <Typography variant="h6" color="blue-gray" className="-mb-3">
                     Mã máy
                 </Typography>
-                {/* <span className=" bg-gray-200 h-full rounded flex">
-                    <span className="self-center pl-2">
-                        {ID}
-                    </span>
-                </span> */}
                 <Input
                     disabled
                     value={ID}

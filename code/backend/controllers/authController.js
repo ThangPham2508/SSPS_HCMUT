@@ -9,7 +9,7 @@ const callback = [
     failureRedirect: "/auth/failure",
     successRedirect: "http://localhost:5173",
     session: true,
-  })
+  }),
 ];
 
 const logout = (req, res, next) => {
@@ -27,4 +27,12 @@ const failure = (req, res) => {
   return res.send("Failed to log in!");
 };
 
-export { login, callback, logout, failure };
+const getProfile = (req, res) => {
+  if (req.user) {
+    res.json({ user: { role: "customer", ...req.user._json } });
+  } else {
+    res.json({ user: null });
+  }
+};
+
+export { login, callback, logout, failure, getProfile };

@@ -5,7 +5,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getInfo: builder.query({
       query: () => ({
-        url: `/session`,
+        url: `${AUTH_URL}/profile`,
       }),
     }),
     logout: builder.mutation({

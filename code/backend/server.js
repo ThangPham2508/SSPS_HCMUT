@@ -65,15 +65,6 @@ app.use("/file", fileRoutes);
 app.use("/log", logRoutes);
 app.use("/config", configRoutes);
 
-app.use("/session", (req, res) => {
-  console.log("Current user is:", req.user);
-  if (req.user) {
-    res.json({ user: req.user });
-  } else {
-    res.json({ user: null });
-  }
-});
-
 app.get("/", (req, res) => {
   res.send("API is running...");
 });

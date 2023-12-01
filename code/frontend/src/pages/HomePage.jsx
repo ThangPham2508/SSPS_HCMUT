@@ -11,7 +11,7 @@ import {
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col items-center bg-white-fill">
+    <div className="flex flex-col items-center">
       <HomeCarousel />
       <div className="mt-10 flex flex-col items-center gap-10">
         <Typography variant="h2" className="text-center text-2xl" color="blue">

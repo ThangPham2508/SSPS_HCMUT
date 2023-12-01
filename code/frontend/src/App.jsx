@@ -11,8 +11,8 @@ const App = () => {
   const { data: user, isLoading, error } = useGetInfoQuery();
 
   useEffect(() => {
-    if (isLoading) return;
-    dispatch(setCredentials({ ...user.user._json }));
+    if (isLoading || !user || !user.user) return;
+    dispatch(setCredentials({ ...user.user}));
   }, [user, dispatch, isLoading]);
 
   return (
@@ -22,7 +22,7 @@ const App = () => {
       ) : (
         <>
           <Header />
-          <main>
+          <main className="py-5 lg:py-10 lg:px-10 bg-white-fill">
             <Outlet />
           </main>
           <Footer />

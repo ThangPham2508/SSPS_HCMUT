@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const role = useSelector((state) => state.auth.role);
+  const role = useSelector((state) => state.auth.userData.role);
 
   useEffect(() => {
     window.addEventListener(

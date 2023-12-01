@@ -1,7 +1,5 @@
 import { Card, Input, Select, Option, Button, Typography } from "@material-tailwind/react";
 
-
-
 const AddPrinter = () => {
     return (
         <Card color="transparent" shadow={false}>
