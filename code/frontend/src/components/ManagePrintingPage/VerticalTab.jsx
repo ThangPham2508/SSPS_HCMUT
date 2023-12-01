@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Tabs,
     TabsHeader,
@@ -44,7 +45,8 @@ import {
         width: '200px',
         height: '60px',
         paddingLeft: '2%', paddingRight:'2%', paddingTop: '6%', paddingBottom: '6%',
-        textAlign: 'left'
+        textAlign: 'left',
+        margin:'2%',
         //backgroundColor: 'lightblue', 
       };
     return (
@@ -53,18 +55,19 @@ import {
         indicatorProps={{
           className: "bg-gray-900/10 shadow-none !text-gray-900",
         }}
-        
-        >
-          {data.map(({ label, value, icon }) => (
-            <Tab key={value} value={value} className="place-items-start ư" 
+        {items.map(({ label, value, icon }) => (
+          <Tab
+            key={value}
+            value={value}
+            className="place-items-start"
             style={componentStyle}
-                //{icon}
+               
             >
-              <div>
-                <text style={{textAlign: 'left'}}>
+              <div className="flex items-start gap-2">
+                {icon}
+                <text>
                     {label}
                 </text>
-                
               </div>
             </Tab>
           ))}
@@ -77,7 +80,7 @@ import {
           </Tab>
             ))} */}
         </TabsHeader>
-        <TabsBody style={{width : '100%', alignItems: 'flex-start'}}>
+        <TabsBody style={{width : '80%', alignItems: 'flex-start', margin : '2%'}}>
           {data.map(({ value, desc }) => (
             <TabPanel key={value} value={value} className="py-0">
               {desc}

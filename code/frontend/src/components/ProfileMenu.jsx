@@ -8,17 +8,24 @@ import {
 } from "@material-tailwind/react";
 import {
   UserCircleIcon,
+  UserIcon,
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../slices/authslice";
+import { useLogoutMutation } from "../slices/authApiSlice";
+import { useSelector } from "react-redux";
 
 const ProfileMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { picture } = useSelector((state) => state.auth.userData);
+
+  const [loggingOut, { isLoading }] = useLogoutMutation();
 
   const handleLogout = () => {
+    loggingOut();
     dispatch(logout());
     navigate("/");
   };
@@ -26,16 +33,15 @@ const ProfileMenu = () => {
   return (
     <Menu>
       <MenuHandler>
-        <Avatar
-          variant="circular"
-          className="cursor-pointer"
-          src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+        {picture ? (
+          <Avatar variant="circular" className="cursor-pointer" src={picture} />
+        ) : (
+          <UserIcon className="w-5" />
+        )}
       </MenuHandler>
       <MenuList>
         <MenuItem className="flex items-center gap-2">
           <UserCircleIcon className="w-5" />
-
           <Typography variant="small" className="font-medium">
             Tài khoản
           </Typography>
@@ -43,7 +49,11 @@ const ProfileMenu = () => {
         <hr className="my-2 border-blue-gray-50" />
         <MenuItem className="flex items-center gap-2" onClick={handleLogout}>
           <ArrowLeftOnRectangleIcon className="w-5" />
-          <Typography variant="small" className="font-medium">
+          <Typography
+            variant="small"
+            className="font-medium"
+            onClick={handleLogout}
+          >
             Đăng xuất
           </Typography>
         </MenuItem>
