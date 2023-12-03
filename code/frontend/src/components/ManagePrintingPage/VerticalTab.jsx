@@ -58,7 +58,7 @@ import {
         
         >
           {data.map(({ label, value, icon }) => (
-            <Tab key={value} value={value} className="place-items-start" 
+            <Tab key={value} value={value} className="place-items-start ư" 
             style={componentStyle}
                 //{icon}
             >

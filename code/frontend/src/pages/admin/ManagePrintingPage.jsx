@@ -7,6 +7,9 @@ import jpg from "../../assets/filetypeicon/jpg.png"
 import pdf from "../../assets/filetypeicon/pdf.png"
 import svg from "../../assets/filetypeicon/svg.png"
 import xls from "../../assets/filetypeicon/xls.png"
+//import PrinterItem from "../../components/PrinterItem";
+import FormPaper from "../../components/FormPaper";
+
 import {
   Breadcrumbs,
   Button,
@@ -134,15 +137,7 @@ const ManagePrintingPage = () => {
   newtabItems = createTabItem("Cài đặt tặng giấy", 2,
   React.createElement(Cog6ToothIcon, { className: "w-5 h-5" }),
     <div>
-      <Card className="flex flex-col">
-        this is a card
-      </Card>
-      <Card className="flex flex-col">
-        this is a card
-      </Card>
-      <Card className="flex flex-col">
-        this is a card
-      </Card>
+      <FormPaper/>
     </div>)
   items.push(newtabItems)
   newtabItems = createTabItem("Xuất báo cáo", 3,
