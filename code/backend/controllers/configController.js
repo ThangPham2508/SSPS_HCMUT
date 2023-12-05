@@ -8,8 +8,16 @@ const getTypes = async (req, res) => {
 
 const addType = async (req, res) => {
   const fileType = req.body.fileType;
-  await Configuration.updateOne({}, { $push: { permittedFileType: fileType } });
-  res.json({ message: "File type added successfully." });
+  const config = await Configuration.findOne();
+  if (!config.permittedFileType.includes(fileType)) {
+    await Configuration.updateOne(
+      {},
+      { $push: { permittedFileType: fileType } }
+    );
+    res.json({ message: "File type added successfully." });
+  } else {
+    res.json({ message: "File type already exists." });
+  }
 };
 
 const deleteType = async (req, res) => {
