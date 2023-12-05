@@ -1,6 +1,7 @@
 import { VerticalTabs } from "../../components/ManagePrintingPage/VerticalTab.jsx";
 import ButtonList from "../../components/ManagePrintingPage/ButtonList.jsx";
 import { Card, Typography } from "@material-tailwind/react";
+
 import {
   Cog6ToothIcon,
   Cog8ToothIcon,
@@ -35,7 +36,6 @@ const ManagePrintingPage = () => {
       <Card />
     ),
   ];
-
   return (
     <div >
         <div>
