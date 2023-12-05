@@ -25,6 +25,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,11 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route index={true} path="/" element={<HomePage />} />
         <Route path="/instruction" element={<InstructionPage />} />
+<<<<<<< HEAD
+=======
+        <Route path="/printing" element={<PrintingPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+>>>>>>> 4e1934bb8cb2e2c331af3bd8ff602ea0fde8eef0
         <Route path="" element={<CustomerRoute />}>
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
