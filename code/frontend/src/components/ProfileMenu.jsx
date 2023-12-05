@@ -28,6 +28,9 @@ const ProfileMenu = () => {
     loggingOut();
     dispatch(logout());
     navigate("/");
+  }
+  const handleProfile = () => {
+    navigate("/Profile");
   };
 
   return (
@@ -40,7 +43,7 @@ const ProfileMenu = () => {
         )}
       </MenuHandler>
       <MenuList>
-        <MenuItem className="flex items-center gap-2">
+        <MenuItem className="flex items-center gap-2" onClick={handleProfile}>
           <UserCircleIcon className="w-5" />
           <Typography variant="small" className="font-medium">
             Tài khoản
