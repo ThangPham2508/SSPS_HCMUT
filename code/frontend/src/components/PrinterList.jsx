@@ -9,7 +9,11 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import FileUploadDialog from "./FileUploadDialog";
 import PrinterInfoDialog from "./PrinterInfoDialog";
-import { useSetStatusMutation, useDeletePrinterMutation } from "../slices/printerApiSlice";
+import {
+  useSetStatusMutation,
+  useDeletePrinterMutation,
+} from "../slices/printerApiSlice";
+import Pagination from "./Pagination";
 
 const PrinterItem = ({ printer, canSelect }) => {
   const [open, setOpen] = useState(false);
@@ -24,22 +28,19 @@ const PrinterItem = ({ printer, canSelect }) => {
   const [setStatus] = useSetStatusMutation();
   const [deletePrinter] = useDeletePrinterMutation();
 
-  useEffect(() => {
-    setStatus({id: printer._id, status: (checked ? 'enabled' : 'disabled')});
-  }, [checked]);  
-
-  const handleChange = () => {
+  const handleChange = async () => {
+    await setStatus({
+      id: printer._id,
+      status: !checked ? "enabled" : "disabled",
+    });
     handleChecked();
-  }
+    window.location.reload();
+  };
 
   const handleDelete = async () => {
     await deletePrinter(printer._id);
     window.location.reload();
-  }
-
-  useEffect(() => {
-    console.log(printer);
-  })
+  };
 
   return (
     <div className="grid grid-cols-6 items-center gap-10">
@@ -49,7 +50,8 @@ const PrinterItem = ({ printer, canSelect }) => {
           Mã máy: {printer.number}
         </Typography>
         <Typography variant="h5" color="blue-gray" className="mb-2 font-bold">
-          Vị Trí: {`${printer.location.campus} - ${printer.location.building} - ${printer.location.room}`}
+          Vị Trí:{" "}
+          {`${printer.location.campus} - ${printer.location.building} - ${printer.location.room}`}
         </Typography>
         <Typography variant="h5" color="blue-gray" className="mb-2 font-bold">
           Hàng chờ: {printer.queue}
@@ -67,7 +69,11 @@ const PrinterItem = ({ printer, canSelect }) => {
               Chọn
             </Button>
           </div>
-          <FileUploadDialog open={open} handleOpen={handleOpen} printerId={printer._id}/>
+          <FileUploadDialog
+            open={open}
+            handleOpen={handleOpen}
+            printerId={printer._id}
+          />
         </>
       ) : (
         <>
@@ -87,7 +93,7 @@ const PrinterItem = ({ printer, canSelect }) => {
               }}
             />
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex items-center gap-5">
             <Button
               variant="filled"
               color="red"
@@ -101,7 +107,11 @@ const PrinterItem = ({ printer, canSelect }) => {
               <InformationCircleIcon className="w-7" color="blue" />
             </IconButton>
           </div>
-          <PrinterInfoDialog open={openInfo} handleOpen={handleOpenInfo} printer={printer}/>
+          <PrinterInfoDialog
+            open={openInfo}
+            handleOpen={handleOpenInfo}
+            printer={printer}
+          />
         </>
       )}
     </div>
@@ -109,11 +119,43 @@ const PrinterItem = ({ printer, canSelect }) => {
 };
 
 const PrinterList = ({ printers, canSelect }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [printersPerPage] = useState(3);
+
+  const indexOfLastPrinter = currentPage * printersPerPage;
+  const indexOfFirstPrinter = indexOfLastPrinter - printersPerPage;
+  let enabledPrinters = printers;
+  if (canSelect) {
+    enabledPrinters = printers.filter(
+      (printer) => printer.status === "enabled",
+    );
+  }
+  let currentPrinters = enabledPrinters?.slice(indexOfFirstPrinter, indexOfLastPrinter);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [printers, canSelect]);
+
   return (
-    <div className="flex flex-col gap-10">
-      {printers?.map((printer, index) => (
-        <PrinterItem key={index} printer={printer} canSelect={canSelect} />
+    <div className="flex min-h-[550px] flex-col gap-10">
+      {currentPrinters?.map((printer) => (
+        <PrinterItem
+          key={printer._id}
+          printer={printer}
+          canSelect={canSelect}
+        />
       ))}
+      {currentPrinters?.length > 0 && (
+        <div className="self-end">
+          <Pagination
+            itemsPerPage={printersPerPage}
+            totalItems={enabledPrinters?.length}
+            paginate={paginate}
+          />
+        </div>
+      )}
     </div>
   );
 };

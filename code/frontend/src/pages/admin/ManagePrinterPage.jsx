@@ -8,9 +8,8 @@ import AddPrinter from "../../components/AddPrinter.jsx";
 import PrinterList from "../../components/PrinterList.jsx";
 import { useGetPrinterQuery } from "../../slices/printerApiSlice";
 
-
 const ManagePrinterPage = () => {
-  const { data: printers, isLoading: isPrintersLoading } = useGetPrinterQuery();
+  const { data: printers } = useGetPrinterQuery();
 
   const createTabItem = (label, value, icon, desc) => ({
     label,
@@ -22,17 +21,15 @@ const ManagePrinterPage = () => {
   const tabItems = [
     createTabItem(
       "Danh sách máy in",
-      1,
+      "1",
       <PlusCircleIcon className="w-10" />,
-      <PrinterList printers={printers} canSelect={false}/>,
+      <PrinterList printers={printers} canSelect={false} />,
     ),
     createTabItem(
       "Thêm máy in",
-      2,
+      "2",
       <ClipboardDocumentIcon className="w-10" />,
-      <div>
-        <AddPrinter />
-      </div>,
+      <AddPrinter />,
     ),
   ];
 

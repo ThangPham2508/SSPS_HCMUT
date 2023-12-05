@@ -26,13 +26,13 @@ const PrintingPage = () => {
     ? [
         createTabItem(
           "Danh sách máy in",
-          1,
+          "1",
           <ClipboardDocumentIcon className="w-10" />,
           <PrinterList printers={printers} canSelect={true} />,
         ),
         createTabItem(
           "Danh sách tài liệu",
-          2,
+          "2",
           <ListBulletIcon className="w-10" />,
           <FileList
             files={files}
@@ -40,7 +40,7 @@ const PrintingPage = () => {
         ),
         createTabItem(
           "Mua giấy in",
-          3,
+          "3",
           <ShoppingCartIcon className="w-10" />,
           <BuyPaper />,
         ),

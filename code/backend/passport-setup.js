@@ -14,6 +14,7 @@ function verifyCallback(req, accessToken, refreshToken, profile, done) {
   User.findOne({ googleId: profile.id }).then((existingUser) => {
     if (existingUser && existingUser.role === req.session.role) {
       done(null, existingUser);
+      console.log("User already exists");
     } else {
       new User({
         googleId: profile.id,

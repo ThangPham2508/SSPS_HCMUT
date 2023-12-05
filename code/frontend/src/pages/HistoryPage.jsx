@@ -14,16 +14,20 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 import LogList from "../components/LogList";
-import { useGetLogsByUserQuery } from "../slices/logApiSlice";
+import { useGetLogsByUserQuery, useCancelLogMutation } from "../slices/logApiSlice";
 import { useGetFilesByUserQuery } from "../slices/fileApiSlice";
 import { useGetPrinterQuery } from "../slices/printerApiSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import moment from "moment";
 
 const LogDialog = ({ open, handleOpen, log }) => {
   const printingConfig = log?.printingProperties;
+  const schedule = log?.schedule;
+  const [cancelLog] = useCancelLogMutation();
+
   return printingConfig ? (
     <Dialog open={open} handler={handleOpen}>
-      <DialogHeader>Log</DialogHeader>
+      <DialogHeader>Chi tiết lịch sử in</DialogHeader>
       <DialogBody className="flex flex-col gap-5">
         {Object.keys(printingConfig).map((key) => {
           return key !== "marginCustomTop" &&
@@ -59,10 +63,17 @@ const LogDialog = ({ open, handleOpen, log }) => {
             </div>
           ) : null;
         })}
+        <div className="grid grid-cols-2 mx-3">
+          <Typography variant="h6">Lịch hẹn: </Typography>
+          <Typography>{moment(schedule).format("DD/MM/YYYY, h:mm:ss A")}</Typography>
+        </div>
       </DialogBody>
-      <DialogFooter>
+      <DialogFooter className="flex gap-5">
         <Button color="blue" onClick={handleOpen}>
           OK
+        </Button>
+        <Button color="red" onClick={() => {cancelLog(log._id); window.location.reload()}}>
+          Hủy
         </Button>
       </DialogFooter>
     </Dialog>
@@ -80,7 +91,6 @@ const HistoryPage = () => {
   const handleClick = (id) => {
     handleOpen();
     setInfoId(id);
-    console.log(id);
   };
 
   const createTabItem = (label, value, icon, desc) => ({
@@ -93,7 +103,7 @@ const HistoryPage = () => {
   const tabItems = [
     createTabItem(
       "Tất cả",
-      1,
+      "1",
       <FolderIcon className="w-10" />,
       <LogList
         files={files}
@@ -105,7 +115,7 @@ const HistoryPage = () => {
     ),
     createTabItem(
       "Hẹn lịch",
-      2,
+      "2",
       <CalendarIcon className="w-10" />,
       <div>
         <LogList
@@ -119,19 +129,19 @@ const HistoryPage = () => {
     ),
     createTabItem(
       "Đã hủy",
-      3,
+      "3",
       <XCircleIcon className="w-10" />,
       <LogList
         files={files}
         printers={printers}
         logs={logs}
-        filter="error"
+        filter="cancelled"
         handleClick={handleClick}
       />,
     ),
     createTabItem(
       "Đã in",
-      4,
+      "4",
       <CheckCircleIcon className="w-10" />,
       <LogList
         files={files}

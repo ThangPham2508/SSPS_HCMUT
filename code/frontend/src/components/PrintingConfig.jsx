@@ -141,9 +141,9 @@ const PrintingConfig = ({ fileId, numPages }) => {
     try {
       const qty = calculatePage({ numPages, ...formValues });
       const result = await updatePage({ quantity: 0 - qty, id: userId });
-      console.log(result);
       if (result.error) {
         alert(result.error.data.message);
+        navigate("/printing");
       } else {
         const payload = {
           userId,
@@ -153,7 +153,8 @@ const PrintingConfig = ({ fileId, numPages }) => {
           ...formValues,
         };
         await createLog(payload).unwrap();
-        //navigate("/history");
+        navigate("/history");
+        window.location.reload();
       }
     } catch (err) {
       if (isError) {

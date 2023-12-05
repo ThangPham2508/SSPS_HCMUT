@@ -11,7 +11,6 @@ import HistoryPage from "./pages/HistoryPage";
 import FeedbackPage from "./pages/FeedbackPage";
 import ManagePrinterPage from "./pages/admin/ManagePrinterPage";
 import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
-import CustomerServicePage from "./pages/admin/CustomerServicePage";
 import FilePreviewPage from "./pages/FilePreviewPage.jsx";
 import AdminHistoryPage from "./pages/admin/HistoryPage";
 import SSOPage from "./pages/SSOPage";
@@ -44,10 +43,6 @@ const router = createBrowserRouter(
           <Route
             path="/admin/printing-manage"
             element={<ManagePrintingPage />}
-          />
-          <Route
-            path="admin/customer-service"
-            element={<CustomerServicePage />}
           />
           <Route
             path="/admin/history"

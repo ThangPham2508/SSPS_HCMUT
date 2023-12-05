@@ -16,7 +16,6 @@ import {
   ClockIcon,
   ChatBubbleLeftEllipsisIcon,
   CogIcon,
-  MegaphoneIcon,
   
 } from "@heroicons/react/24/outline";
 import ProfileMenu from "./ProfileMenu";
@@ -77,15 +76,8 @@ const Header = () => {
             "PHẢN HỒI",
           )
         : role === "SPSO"
-          ? generateNavItem(
-              <MegaphoneIcon />,
-              "/admin/customer-service",
-              "CSKH",
-            )
+          ?  generateNavItem(<ClockIcon />, "/admin/history", "LỊCH SỬ IN")
           : generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
-      {role === "SPSO"
-        ? generateNavItem(<ClockIcon />, "/admin/history", "LỊCH SỬ IN")
-        : null}
     </ul>
   );
 

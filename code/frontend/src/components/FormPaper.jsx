@@ -1,54 +1,52 @@
-import React, { useState } from 'react';
-import { 
-    Typography,
-    Button,
-    Input,
-    Select
-} from '@material-tailwind/react';
+import { useEffect, useState } from "react";
+import { Typography, Button, Input } from "@material-tailwind/react";
+import {useGetDefaultsQuery, useUpdateDefaultsMutation} from "../slices/configApiSlice";
 
 const FormPaper = () => {
-    const [selectedDate, setSelectedDate] = useState(null);
-  
-    const handleDateChange = (event) => {
-      const selectedDate = event.target.value;
-      setSelectedDate(selectedDate);
-    };
-  
-    const [numericValue, setNumericValue] = useState('');
-  
-    const handleNumericChange = (e) => {
-      // Lọc chỉ giữ lại các ký tự số
-      const value = e.target.value.replace(/\D/g, '');
-      setNumericValue(value);
-    };
-  
-    return (
-      <div >
-        <div>
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [updateDefaults] = useUpdateDefaultsMutation();
+  const {data: defaults} = useGetDefaultsQuery();
+
+  const handleDateChange = (event) => {
+    const selectedDate = event.target.value;
+    setSelectedDate(selectedDate);
+  };
+
+  const [numericValue, setNumericValue] = useState("");
+
+  const handleNumericChange = (e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    setNumericValue(value);
+  };
+
+  useEffect(() => {
+    if (defaults?.defaultPages)
+    setNumericValue(defaults?.defaultPages);
+    if (defaults?.distributionDates) {
+      const date = new Date(defaults?.distributionDates)
+      setSelectedDate(date.toISOString().slice(0, 10));
+    }
+  }, [defaults])
+
+  const handleSubmit = () => {
+    console.log(numericValue, new Date(selectedDate))
+    updateDefaults({defaultPages: numericValue, distributionDates: new Date(selectedDate)});
+  }
+
+  return (
+    <div>
+      <div className="grid grid-cols-2 gap-10">
+        <div style={{ width: "70%" }}>
           <Typography
-            class="col-span-2"
-            variant="small"
+            variant="h6"
             color="blue-gray"
             className="mb-2 font-medium"
-            style={{fontWeight: 'bold'}}
+            style={{ fontWeight: "bold" }}
           >
-            Quản lý giấy miễn phí
+            Chọn ngày tặng giấy
           </Typography>
-        </div>
-        <div >
-        <form className="grid grid-cols-2">
-          <div style={{width : '70%'}}>
-            <Typography
-              variant="small"
-              color="blue-gray"
-              className="mb-2 font-medium"
-              style={{fontWeight: 'bold'}}
-            >
-              Chọn ngày tặng giấy
-            </Typography>
           <Input
-            //containerProps={{ className: "min-w-[20px]" }}
-            placeholder="Select a date" // bị lỗi
+            placeholder="Select a date"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
               className: "before:content-none after:content-none",
@@ -57,20 +55,19 @@ const FormPaper = () => {
             value={selectedDate}
             onChange={handleDateChange}
           />
-          </div>
-  
-        <div style={{width : '70%'}}>
+        </div>
+
+        <div style={{ width: "70%" }}>
           <Typography
-            variant="small"
+            variant="h6"
             color="blue-gray"
             className="mb-2 font-medium"
-            style={{fontWeight: 'bold'}}
+            style={{ fontWeight: "bold" }}
           >
             Số giấy miễn phí được cấp
           </Typography>
           <Input
             maxLength={3}
-            //containerProps={{ className: "min-w-[px]" }}
             placeholder="Enter number"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
@@ -81,21 +78,20 @@ const FormPaper = () => {
             onChange={handleNumericChange}
           />
         </div>
-        <div>  </div>
-        <div className="grid justify-items-center">
-          <Button style={{marginTop : '2%'}}
-          variant="gradient" 
-          color = "blue"
-          size="md"
+        <div className="justify-items-center">
+          <Button
+            style={{ marginTop: "2%" }}
+            variant="gradient"
+            color="blue"
+            size="md"
+            onClick={handleSubmit}
           >
             Xác nhận
           </Button>
         </div>
-        </form>
-        
       </div>
-      </div>
-    );
-  }
+    </div>
+  );
+};
 
 export default FormPaper;

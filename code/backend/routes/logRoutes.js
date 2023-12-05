@@ -3,7 +3,7 @@ import {
   createPrintingLog,
   getPrintingLogs,
   getPrintingLog,
-  updatePrintingLog,
+  cancelPrintingLog,
   deletePrintingLog,
   getPrintingLogsByUser
 } from "../controllers/logController.js";
@@ -15,7 +15,7 @@ router.route("/mine").get(getPrintingLogsByUser);
 router
   .route("/:id")
   .get(getPrintingLog)
-  .put(updatePrintingLog)
+  .put(cancelPrintingLog)
   .delete(deletePrintingLog);
 
 export default router;

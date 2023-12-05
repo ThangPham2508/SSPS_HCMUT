@@ -6,35 +6,39 @@ import {
 } from "@heroicons/react/24/solid";
 import { Card, Button } from "@material-tailwind/react";
 import moment from "moment";
-import { useEffect } from "react";
+import Pagination from "./Pagination";
+import { useEffect, useState } from "react";
 
 const statusIcon = {
   queued: <ClockIcon className="w-8" />,
   completed: <CheckBadgeIcon className="w-8" />,
-  error: <ExclamationTriangleIcon className="w-8" />,
+  cancelled: <ExclamationTriangleIcon className="w-8" />,
 };
 
 const statusColor = {
   queued: "bg-gray-500",
   completed: "bg-green-500",
-  error: "bg-red-500",
+  cancelled: "bg-red-500",
 };
 
-const LogItem = ({ file, printer, log, handleClick }) => {
+const LogItem = ({ file, printer, log, handleClick, admin }) => {
   return (
     <Card className={`grid h-40 w-full grid-cols-10 gap-5`}>
-      <div className="col-span-1">
+      <div className="col-span-1 flex w-32 items-center">
         <img src={filetype[file.type]} alt="" className="w-full p-[10px]" />
       </div>
-      <div className="col-span-3 ps-10">
-        <div className="h-full grid-rows-2">
-          <p className="flex h-1/2 items-center truncate font-semibold">
-            {file.name}
+      <div className="col-span-3 h-full grid-rows-3 ps-10">
+        <p className="flex h-1/2 items-center truncate font-semibold">
+          {file.name}
+        </p>
+        {admin ? (
+          <p className="font-semibold">
+            Khách hàng: {log.userId.substring(0, 7)}
           </p>
-          <p className="flex h-1/2 items-center font-semibold">
-            Số trang: {file.pageNum}
-          </p>
-        </div>
+        ) : null}
+        <p className="flex h-1/2 items-center font-semibold">
+          Số trang: {file.pageNum}
+        </p>
       </div>
       <div className="col-span-6">
         <div className="h-full grid-rows-2">
@@ -75,25 +79,60 @@ const LogItem = ({ file, printer, log, handleClick }) => {
   );
 };
 
-const LogList = ({ files, printers, logs, filter, handleClick }) => {
+const LogList = ({ files, printers, logs, filter, handleClick, admin }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [logsPerPage] = useState(3);
+
+  const indexOfLastLog = currentPage * logsPerPage;
+  const indexOfFirstLog = indexOfLastLog - logsPerPage;
+
+  const filteredLogs = logs?.filter((log) => {
+    if (filter !== "all" && log.status !== filter) return false;
+    const exists =
+      files?.some((file) => file._id === log.fileId) &&
+      printers?.some((printer) => printer._id === log.printerId);
+    console.log(
+      exists
+    );
+    return exists;
+  });
+
+  const currentLogs = filteredLogs.slice(indexOfFirstLog, indexOfLastLog);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [logs, filter]);
+
   return (
     <div className="flex flex-col gap-12">
-      {logs?.map((log, index) => {
-        if (filter !== "all" && log.status !== filter) return;
-        const file = files.find((file) => file._id === log.fileId);
-        const printer = printers.find(
+      {currentLogs?.map((log) => {
+        const file = files?.find((file) => file._id === log.fileId);
+        const printer = printers?.find(
           (printer) => printer._id === log.printerId,
         );
+        if (!file || !printer) return null;
         return (
           <LogItem
-            key={index}
+            key={log._id}
             file={file}
             printer={printer}
             log={log}
             handleClick={handleClick}
+            admin={admin}
           />
         );
       })}
+      {
+        <div className="self-end">
+          <Pagination
+            itemsPerPage={logsPerPage}
+            totalItems={filteredLogs.length}
+            paginate={paginate}
+          />
+        </div>
+      }
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import Printer from "../models/printerModel.js"
 
 const createPrinter = async (req, res) => {
-  console.log(req.body);  const printer = new Printer(req.body);
+  const printer = new Printer(req.body);
   try {
     await printer.save();
     res.status(201).send(printer);
@@ -59,6 +59,7 @@ const deletePrinter = async (req, res) => {
 
 const setStatus = async (req, res) => {
   const { id, status } = req.body;
+  console.log(id);
 
   if (!["enabled", "disabled"].includes(status)) {
     return res.status(400).json({ error: "Invalid status value" });
@@ -71,7 +72,6 @@ const setStatus = async (req, res) => {
     }
 
     printer.status = status;
-    console.log(printer);
     await printer.save();
 
     res.json({ message: "Status updated successfully", printer });

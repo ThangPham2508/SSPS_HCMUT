@@ -20,7 +20,13 @@ export const printerApiSlice = apiSlice.injectEndpoints({
         body: log,
       }),
     }),
+    cancelLog: builder.mutation({
+      query: (id) => ({
+        url: `${LOG_URL}/${id}`,
+        method: 'PUT',
+      }),
+    }),
   }),
 });
 
-export const { useGetLogsQuery, useGetLogsByUserQuery, useCreateLogMutation } = printerApiSlice;
+export const { useGetLogsQuery, useGetLogsByUserQuery, useCreateLogMutation, useCancelLogMutation } = printerApiSlice;

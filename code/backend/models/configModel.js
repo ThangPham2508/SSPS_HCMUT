@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const configurationSchema = new mongoose.Schema({
   defaultPages: { type: Number, default: 0 },
-  distributionDates: [Date],
+  distributionDates: Date,
   permittedFileType: {
     type: "array",
     items: {

@@ -2,42 +2,34 @@ import cron from "node-cron";
 import Log from "./models/printingLogModel.js";
 import Printer from "./models/printerModel.js";
 
-function start() {
-  cron.schedule("* * * * *", function () {
+async function start() {
+  cron.schedule("* * * * *", async function () {
     console.log("Running...");
     const now = new Date();
+    try {
+      const logs = await Log.find({
+        schedule: { $lte: now },
+        status: { $nin: ['cancelled', 'completed'] }
+      });
+      for (const log of logs) {
+        log.status = "completed";
+        await log.save();
+        console.log(`Updated log ${log._id}`);
 
-    Log.find({ schedule: { $lte: now } }, function (err, logs) {
-      if (err) {
-        console.log(err);
-      } else {
-        logs.forEach((log) => {
-          log.status = "completed";
-          log.save(function (err) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(`Updated log ${log._id}`);
-              Printer.findById(log.printerId, function (err, printer) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  printer.queue = Math.max(0, printer.queue - 1);
-                  printer.save(function (err) {
-                    if (err) {
-                      console.log(err);
-                    } else {
-                      console.log(`Decreased queue for printer ${printer._id}`);
-                    }
-                  });
-                }
-              });
-            }
-          });
-        });
+        const printer = await Printer.findById(log.printerId);
+        if (!printer) {
+          console.log(`Printer not found for log ${log._id}`);
+          continue;
+        }
+
+        printer.queue = Math.max(0, printer.queue - 1);
+        await printer.save();
+        console.log(`Decreased queue for printer ${printer._id}`);
       }
-    });
+    } catch (err) {
+      console.error("Error updating log or printer:", err);
+    }
   });
 }
 
-export {start}
+export { start };

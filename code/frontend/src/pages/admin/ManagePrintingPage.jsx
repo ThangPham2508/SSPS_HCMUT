@@ -1,6 +1,7 @@
 import { VerticalTabs } from "../../components/ManagePrintingPage/VerticalTab.jsx";
 import ButtonList from "../../components/ManagePrintingPage/ButtonList.jsx";
 import { Card, Typography } from "@material-tailwind/react";
+import FormPaper from "../../components/FormPaper.jsx";
 
 import {
   Cog6ToothIcon,
@@ -21,13 +22,13 @@ const ManagePrintingPage = () => {
       "Cài đặt loại file in",
       "1",
       <MapIcon className="w-5 h-5" />,
-      <div>{ButtonList([1, 2, 3, 4, 5])}</div>
+      <ButtonList />
     ),
     createTabItem(
       "Cài đặt tặng giấy",
       "2",
       <Cog6ToothIcon className="w-5 h-5" />,
-      <Card />
+      <FormPaper />
     ),
     createTabItem(
       "Xuất báo cáo",

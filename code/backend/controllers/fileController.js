@@ -4,8 +4,16 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import Configuration from "../models/configModel.js";
 
 const createFile = async (req, res) => {
+  const config = await Configuration.findOne(); 
+  const fileType = req.body.type; 
+
+  if (!config.permittedFileType.includes(fileType)) {
+    return res.status(400).send({ error: 'File type not permitted.' });
+  }
+
   const file = new File(req.body);
   try {
     await file.save();

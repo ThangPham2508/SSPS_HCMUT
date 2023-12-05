@@ -37,15 +37,21 @@ const getPrintingLog = async (req, res) => {
   }
 };
 
-const updatePrintingLog = async (req, res) => {
+const cancelPrintingLog = async (req, res) => {
   try {
-    const log = await PrintingLog.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const log = await PrintingLog.findById(req.params.id);
+
     if (!log) {
-      return res.status(404).send();
+      return res.status(404).json({ message: 'Log not found' });
     }
-    res.send(log);
-  } catch (error) {
-    res.status(400).send(error);
+
+    log.status = 'cancelled';
+    await log.save();
+
+    res.json({ message: 'Log status updated to cancelled' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
@@ -74,7 +80,7 @@ export {
   createPrintingLog,
   getPrintingLogs,
   getPrintingLog,
-  updatePrintingLog,
+  cancelPrintingLog,
   deletePrintingLog,
   getPrintingLogsByUser
 };

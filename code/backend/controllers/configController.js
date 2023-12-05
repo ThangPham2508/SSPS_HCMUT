@@ -35,6 +35,7 @@ const getDefaults = async (req, res) => {
 };
 
 const updateDefaults = async (req, res) => {
+  console.log(req.body);
   const { defaultPages, distributionDates } = req.body;
   await Configuration.findOneAndUpdate(
     {},
