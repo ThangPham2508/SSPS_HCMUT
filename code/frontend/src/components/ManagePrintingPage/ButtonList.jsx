@@ -30,7 +30,7 @@ const CookieDialog = ({ onConfirm, onCancel, openn }) => {
   );
 };
 
-const ButtonList = (_toggle,_typeList,_pngList) => {
+const ButtonList = (_typeList,_pngList) => {
   const [pngList, setPngList] = useState(Array.from({ length: _pngList.length }, (_, index) => _pngList[index]));
   const [typeList, setTypeList] = useState(Array.from({ length: _typeList.length }, (_, index) => _typeList[index]));
   const [buttons, setButtons] = useState(Array.from({ length: _pngList.length }, (_, index) => index));

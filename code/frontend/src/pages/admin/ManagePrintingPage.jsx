@@ -7,6 +7,9 @@ import jpg from "../../assets/filetypeicon/jpg.png"
 import pdf from "../../assets/filetypeicon/pdf.png"
 import svg from "../../assets/filetypeicon/svg.png"
 import xls from "../../assets/filetypeicon/xls.png"
+//import PrinterItem from "../../components/PrinterItem";
+import FormPaper from "../../components/FormPaper";
+
 import {
   Breadcrumbs,
   Button,
@@ -62,7 +65,6 @@ const ManagePrintingPage = () => {
     },
     */
   ];
-  let _toggle = [1,2,3,4,5]
   let _typeList = ['pdf', 'jpg', 'docx', 'xls', 'svg', 'xlsx', 'pptx', 'png', 'xps',]
   let _pngList = []
   for (let type in _typeList){
@@ -70,12 +72,7 @@ const ManagePrintingPage = () => {
   }
   let _buttonList = []
   const Vertab = () => {
-
-    const handleButtonClick = (idx) => {
-      // Update the state to trigger a re-render
-      _toggle[idx] = 1 - _toggle[idx]
-    };
-  
+ 
 
   // for (let type in _typeList) {
   //   if (_toggle[type] === 1)
@@ -108,13 +105,14 @@ const ManagePrintingPage = () => {
     React.createElement(MapIcon, { className: "w-5 h-5" }),
       //{_buttonList.map(_buttonList => _buttonList.comp)}
     <div>
-      {ButtonList(_toggle,_typeList,_pngList)}
+      {ButtonList(_typeList,_pngList)}
     </div>)
   items.push(newtabItems)
   newtabItems = createTabItem("Cài đặt tặng giấy", 2,
   React.createElement(Cog6ToothIcon, { className: "w-5 h-5" }),
-    <Card>
-    </Card>)
+    <div>
+      <FormPaper/>
+    </div>)
   items.push(newtabItems)
   newtabItems = createTabItem("Xuất báo cáo", 3,
   React.createElement(Cog8ToothIcon, { className: "w-5 h-5" }),
