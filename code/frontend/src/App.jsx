@@ -1,18 +1,33 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useGetInfoQuery } from "./slices/authApiSlice";
+import { useEffect } from "react";
+import { setCredentials } from "./slices/authSlice";
 
 const App = () => {
-  const role = useSelector((state) => state.auth.role);
+  const dispatch = useDispatch();
+  const { data: user, isLoading, error } = useGetInfoQuery();
+
+  useEffect(() => {
+    if (isLoading) return;
+    dispatch(setCredentials({ ...user.user._json }));
+  }, [user, dispatch, isLoading]);
 
   return (
     <>
-      <Header role={role} />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Header />
+          <main>
+            <Outlet />
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   );
 };
