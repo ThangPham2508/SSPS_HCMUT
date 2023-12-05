@@ -8,6 +8,16 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${AUTH_URL}/profile`,
       }),
     }),
+    updatePage: builder.mutation({
+      query: ({quantity, id}) => ({
+        url: `${AUTH_URL}/page`,
+        method: 'POST',
+        body: {
+          quantity: quantity,
+          id: id,
+        }
+      }),
+    }),
     logout: builder.mutation({
       query: () => ({
         url: `${AUTH_URL}/logout`,
@@ -16,4 +26,4 @@ export const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetInfoQuery, useLogoutMutation } = userApiSlice;
+export const { useGetInfoQuery, useUpdatePageMutation, useLogoutMutation } = userApiSlice;

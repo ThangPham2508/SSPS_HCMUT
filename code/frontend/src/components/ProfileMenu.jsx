@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 const ProfileMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { picture, role } = useSelector((state) => state.auth.userData);
+  const { avatar, role } = useSelector((state) => state.auth.userData);
 
   const [loggingOut, { isLoading }] = useLogoutMutation();
 
@@ -33,8 +33,8 @@ const ProfileMenu = () => {
   return (
     <Menu>
       <MenuHandler>
-        {role !== null && picture ? (
-          <Avatar variant="circular" className="cursor-pointer" src={picture} />
+        {role !== null && avatar ? (
+          <Avatar variant="circular" className="cursor-pointer" src={avatar} />
         ) : (
           <UserIcon className="w-5" />
         )}

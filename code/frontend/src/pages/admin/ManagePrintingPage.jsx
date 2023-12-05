@@ -1,6 +1,6 @@
 import { VerticalTabs } from "../../components/ManagePrintingPage/VerticalTab.jsx";
 import ButtonList from "../../components/ManagePrintingPage/ButtonList.jsx";
-import { Breadcrumbs, Card, Typography } from "@material-tailwind/react";
+import { Card, Typography } from "@material-tailwind/react";
 import {
   Cog6ToothIcon,
   Cog8ToothIcon,
@@ -51,24 +51,11 @@ const ManagePrintingPage = () => {
   ];
 
   return (
-    <div className="grid-rows-12 grids-cols-12 grid gap-5">
-      <div className="flex h-20 items-center gap-5">
-        <div className="cols-span-5 items-center">
+    <div >
+        <div>
           <Typography variant="h3" className="font-bold ">
             QUẢN LÝ IN ẤN
           </Typography>
-        </div>
-        <div className="cols-span-7 items-center">
-          <Breadcrumbs>
-            <a href="../" className="opacity-60">
-              Trang chủ
-            </a>
-            <a href="#" className="opacity-60">
-              Quản lý in ấn
-            </a>
-            <a href="#">Cài đặt kiểu file in</a>
-          </Breadcrumbs>
-        </div>
       </div>
       <VerticalTabs item={tabItems} />
     </div>

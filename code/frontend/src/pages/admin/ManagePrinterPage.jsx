@@ -5,8 +5,13 @@ import {
   ClipboardDocumentIcon,
 } from "@heroicons/react/24/solid";
 import AddPrinter from "../../components/AddPrinter.jsx";
+import PrinterList from "../../components/PrinterList.jsx";
+import { useGetPrinterQuery } from "../../slices/printerApiSlice";
+
 
 const ManagePrinterPage = () => {
+  const { data: printers, isLoading: isPrintersLoading } = useGetPrinterQuery();
+
   const createTabItem = (label, value, icon, desc) => ({
     label,
     value,
@@ -18,13 +23,13 @@ const ManagePrinterPage = () => {
     createTabItem(
       "Danh sách máy in",
       1,
-      <PlusCircleIcon className="w-5" />,
-      <div>dsmi</div>,
+      <PlusCircleIcon className="w-10" />,
+      <PrinterList printers={printers} canSelect={false}/>,
     ),
     createTabItem(
       "Thêm máy in",
       2,
-      <ClipboardDocumentIcon className="h-5 w-5" />,
+      <ClipboardDocumentIcon className="w-10" />,
       <div>
         <AddPrinter />
       </div>,

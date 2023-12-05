@@ -9,8 +9,9 @@ const printers = [
       building: "B4",
       room: "101",
     },
-    queue: [],
+    queue: 0,
     status: "enabled",
+    number: "M15W-1231",
   },
   {
     brand: "Canon",
@@ -22,8 +23,9 @@ const printers = [
       building: "B4",
       room: "201",
     },
-    queue: [],
+    queue: 0,
     status: "enabled",
+    number: "iP110-3538",
   },
   {
     brand: "Epson",
@@ -35,8 +37,9 @@ const printers = [
       building: "A5",
       room: "301",
     },
-    queue: [],
+    queue: 0,
     status: "disabled",
+    number: "WF110-1231",
   },
   {
     brand: "Brother",
@@ -48,8 +51,9 @@ const printers = [
       building: "H6",
       room: "401",
     },
-    queue: [],
+    queue: 0,
     status: "enabled",
+    number: "L2350DW-121331",
   },
   {
     brand: "Samsung",
@@ -61,8 +65,9 @@ const printers = [
       building: "H6",
       room: "501",
     },
-    queue: [],
+    queue: 0,
     status: "disabled",
+    number: "M2020W-7521",
   },
 ];
 

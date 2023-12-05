@@ -1,4 +1,5 @@
 import passport from "../passport-setup.js";
+import User from "../models/userModel.js";
 
 const login = passport.authenticate("google", {
   scope: ["email", "profile"],
@@ -13,12 +14,10 @@ const callback = [
 ];
 
 const logout = (req, res, next) => {
-  console.log("logging out", req.user);
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    console.log("logged out", req.user);
     res.redirect("http://localhost:5173");
   });
 };
@@ -29,10 +28,50 @@ const failure = (req, res) => {
 
 const getProfile = (req, res) => {
   if (req.user) {
-    res.json({ user: { role: "customer", ...req.user._json } });
+    User.findOne({ googleId: req.user.googleId })
+      .then((user) => {
+        if (user) {
+          res.json({ user: user });
+        } else {
+          res.json({ user: null });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json({ error: "Internal server error" });
+      });
   } else {
     res.json({ user: null });
   }
 };
 
-export { login, callback, logout, failure, getProfile };
+const addToPageBalance = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id, quantity } = req.body;
+    const user = await User.findOne({ _id: id });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    console.log(user.pageBalance);
+    if (user.pageBalance + quantity < 0) {
+      return res.status(400).json({ message: 'Not enough page balance!' });
+    }
+
+    user.pageBalance += quantity;
+
+    const updatedUser = await user.save();
+    return res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+const setRole = (req, res) => {
+  req.session.role = req.query.role;
+  res.redirect('/auth/google');
+};
+
+export { login, callback, logout, failure, getProfile, setRole, addToPageBalance };

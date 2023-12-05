@@ -6,9 +6,10 @@ import {
   TabPanel,
   Typography,
 } from "@material-tailwind/react";
+
 export function VerticalTabs({ item }) {
   const componentStyle = {
-    width: "200px",
+    width: "300px",
     height: "60px",
     paddingLeft: "2%",
     paddingRight: "2%",
@@ -20,9 +21,9 @@ export function VerticalTabs({ item }) {
   return (
     <Tabs value="1" orientation="vertical">
       <TabsHeader
-        className="bg-transparent"
+        className="bg-transparent w-72"
         indicatorProps={{
-          className: "bg-gray-900/10 shadow-none !text-gray-900",
+          className: "bg-gray-900/10 shadow-none !text-gray-900 w-72",
         }}
       >
         {item.map(({ label, value, icon }) => (
@@ -32,15 +33,15 @@ export function VerticalTabs({ item }) {
             className="flex items-center justify-start gap-2"
             style={componentStyle}
           >
-            <div className="flex gap-3">
+            <div className="flex gap-3 items-center">
               {icon}
-              <Typography>{label}</Typography>
+              <Typography variant="h5">{label}</Typography>
             </div>
           </Tab>
         ))}
       </TabsHeader>
       <TabsBody
-        style={{ width: "80%", alignItems: "flex-start", margin: "2%" }}
+        className="ms-10"
       >
         {item.map(({ value, desc }) => (
           <TabPanel key={value} value={value} className="py-0">

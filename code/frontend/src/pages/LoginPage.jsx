@@ -15,16 +15,10 @@ import CookieDialog from "../components/Dialog";
 const LoginPage = () => {
   const [language, setLanguage] = useState("vie");
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    window.location.href = "http://localhost:5000/auth/google";
-    /* try {
-      const res = await login().unwrap();
-      dispatch(setCredentials({ ...res }));
-      navigate("/");
-    } catch (err) {
-      // Ignore
-    } */
+  const handleClick = async (role) => {
+    window.location.href = `http://localhost:5000/auth/role?role=${encodeURIComponent(
+      role,
+    )}`;
   };
 
   const handleLanguageChange = (event) => {
@@ -45,7 +39,7 @@ const LoginPage = () => {
             fullWidth
             className="font-normal"
             size="md"
-            onClick={handleClick}
+            onClick={() => handleClick("customer")}
           >
             {language === "vie"
               ? "Cán bộ / Sinh viên trường ĐH Bách Khoa Tp.HCM"
@@ -55,7 +49,7 @@ const LoginPage = () => {
             variant="outlined"
             fullWidth
             className="font-normal"
-            onClick={handleClick}
+            onClick={() => handleClick("SPSO")}
           >
             {language === "vie"
               ? "Nhân viên dịch vụ in ấn sinh viên - SPSO"

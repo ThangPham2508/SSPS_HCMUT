@@ -8,6 +8,7 @@ import config from "./config.js";
 import cors from "cors";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import {start} from "./cronJob.js";
 
 import authRoutes from "./routes/authRoutes.js";
 import printerRoutes from "./routes/printerRoutes.js";
@@ -15,7 +16,7 @@ import fileRoutes from "./routes/fileRoutes.js";
 import logRoutes from "./routes/logRoutes.js";
 import configRoutes from "./routes/configRoutes.js";
 
-connectDB();
+await connectDB();
 
 const port = process.env.PORT || 5000;
 
@@ -68,6 +69,8 @@ app.use("/config", configRoutes);
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+
+start();
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);

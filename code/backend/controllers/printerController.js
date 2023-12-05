@@ -1,21 +1,83 @@
-const createPrinter = (req, res) => {
-  // TODO: Implement the logic to create a printer
+import Printer from "../models/printerModel.js"
+
+const createPrinter = async (req, res) => {
+  console.log(req.body);  const printer = new Printer(req.body);
+  try {
+    await printer.save();
+    res.status(201).send(printer);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
 
-const getPrinters = (req, res) => {
-  // TODO: Implement the logic to get all printers
+const getPrinters = async (req, res) => {
+  try {
+    const printers = await Printer.find({});
+    res.json(printers);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
-const getPrinter = (req, res) => {
-  // TODO: Implement the logic to get a specific printer
+const getPrinter = async (req, res) => {
+  try {
+    const printer = await Printer.findById(req.params.id);
+    if (!printer) {
+      return res.status(404).send();
+    }
+    res.send(printer);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
-const updatePrinter = (req, res) => {
-  // TODO: Implement the logic to update a specific printer
+const updatePrinter = async (req, res) => {
+  try {
+    const printer = await Printer.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!printer) {
+      return res.status(404).send();
+    }
+    res.send(printer);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
 
-const deletePrinter = (req, res) => {
-  // TODO: Implement the logic to delete a specific printer
+const deletePrinter = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const printer = await Printer.findByIdAndDelete(req.params.id);
+    
+    if (!printer) {
+      return res.status(404).send();
+    }
+    res.send(printer);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 };
 
-export { createPrinter, getPrinters, getPrinter, updatePrinter, deletePrinter };
+const setStatus = async (req, res) => {
+  const { id, status } = req.body;
+
+  if (!["enabled", "disabled"].includes(status)) {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
+  try {
+    const printer = await Printer.findById(id);
+    if (!printer) {
+      return res.status(404).json({ error: "Printer not found" });
+    }
+
+    printer.status = status;
+    console.log(printer);
+    await printer.save();
+
+    res.json({ message: "Status updated successfully", printer });
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while updating the status" });
+  }
+};
+
+export { createPrinter, getPrinters, getPrinter, updatePrinter, deletePrinter, setStatus };

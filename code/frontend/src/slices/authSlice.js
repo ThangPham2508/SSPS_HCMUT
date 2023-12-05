@@ -4,13 +4,14 @@ const initialState = {
   userData: localStorage.getItem("userData")
     ? JSON.parse(localStorage.getItem("userData"))
     : {
-        role: null,
-        sub: null,
-        name: null,
-        given_name: null,
-        family_name: null,
-        picture: null,
+        _id: null,
+        googleId: null,
+        firstName: null,
+        lastName: null,
+        avatar: null,
         email: null,
+        role: null,
+        pageBalance: null,
       },
 };
 
@@ -27,13 +28,14 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.userData = {
-        role: null,
-        sub: null,
-        name: null,
-        given_name: null,
-        family_name: null,
-        picture: null,
+        _id: null,
+        googleId: null,
+        firstName: null,
+        lastName: null,
+        avatar: null,
         email: null,
+        role: null,
+        pageBalance: null,
       };
       localStorage.removeItem("userData");
       localStorage.removeItem("expirationTime");

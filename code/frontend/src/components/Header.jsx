@@ -17,6 +17,7 @@ import {
   ChatBubbleLeftEllipsisIcon,
   CogIcon,
   MegaphoneIcon,
+  
 } from "@heroicons/react/24/outline";
 import ProfileMenu from "./ProfileMenu";
 import logo from "../assets/logo.png";
@@ -53,7 +54,7 @@ const Header = () => {
 
       {role === "customer"
         ? generateNavItem(<ClockIcon />, "/history", "LỊCH SỬ IN")
-        : role === "admin"
+        : role === "SPSO"
           ? generateNavItem(
               <PrinterIcon />,
               "/admin/printer-manage",
@@ -61,7 +62,7 @@ const Header = () => {
             )
           : generateNavItem(<BookOpenIcon />, "/instruction", "HƯỚNG DẪN")}
 
-      {role === "admin"
+      {role === "SPSO"
         ? generateNavItem(
             <CogIcon />,
             "/admin/printing-manage",
@@ -75,13 +76,16 @@ const Header = () => {
             "/feedback",
             "PHẢN HỒI",
           )
-        : role === "admin"
+        : role === "SPSO"
           ? generateNavItem(
               <MegaphoneIcon />,
               "/admin/customer-service",
               "CSKH",
             )
           : generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
+      {role === "SPSO"
+        ? generateNavItem(<ClockIcon />, "/admin/history", "LỊCH SỬ IN")
+        : null}
     </ul>
   );
 

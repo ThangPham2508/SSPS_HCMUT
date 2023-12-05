@@ -1,17 +1,39 @@
-const createConfiguration = (req, res) => {
-  // TODO: Implement the logic to create a configuration
+import Configuration from "../models/configModel.js";
+
+const getTypes = async (req, res) => {
+  const config = await Configuration.findOne();
+  console.log(config);
+  res.json(config.permittedFileType);
 };
 
-const getConfiguration = (req, res) => {
-  // TODO: Implement the logic to get configuration
+const addType = async (req, res) => {
+  const fileType = req.body.fileType;
+  await Configuration.updateOne({}, { $push: { permittedFileType: fileType } });
+  res.json({ message: "File type added successfully." });
 };
 
-const updateConfiguration = (req, res) => {
-  // TODO: Implement the logic to update a specific configuration
+const deleteType = async (req, res) => {
+  const fileType = req.body.fileType;
+  await Configuration.updateOne({}, { $pull: { permittedFileType: fileType } });
+  res.json({ message: "File type deleted successfully." });
 };
 
-export {
-  createConfiguration,
-  getConfiguration,
-  updateConfiguration,
+const getDefaults = async (req, res) => {
+  const config = await Configuration.findOne();
+  res.json({
+    defaultPages: config.defaultPages,
+    distributionDates: config.distributionDates,
+  });
 };
+
+const updateDefaults = async (req, res) => {
+  const { defaultPages, distributionDates } = req.body;
+  await Configuration.findOneAndUpdate(
+    {},
+    { defaultPages, distributionDates },
+    { upsert: true }
+  );
+  res.json({ message: "Defaults updated successfully." });
+};
+
+export { getTypes, addType, deleteType, getDefaults, updateDefaults };

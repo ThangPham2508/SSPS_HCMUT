@@ -1,16 +1,17 @@
 import mongoose from "mongoose";
 
+
 const printerSchema = new mongoose.Schema(
   {
     brand: { type: String, required: true },
-    model: { type: String, required: true },
+    number: { type: String, required: true },
     description: String,
     location: {
       campus: String,
       building: String,
       room: String,
     },
-    queue: [String],
+    queue: { type: Number, default: 0 },
     status: {
       type: String,
       enum: ["enabled", "disabled"],

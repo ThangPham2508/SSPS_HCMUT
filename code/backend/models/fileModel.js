@@ -6,16 +6,18 @@ const fileSchema = new mongoose.Schema({
     required: true,
     ref: "User",
   },
+  printerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Printer",
+  },
+  pageNum: {
+    type: Number,
+  },
   name: { type: String, required: true },
   type: { type: String, required: true },
   uploadTime: { type: Date, default: Date.now },
-  printingProperties: {
-    paperSize: String,
-    pagesToBePrinted: Number,
-    oneOrDoubleSided: String,
-    numberOfCopies: Number,
-  },
-  status: { type: String, enum: ["verified", "notVerified"], required: true },
+  status: { type: String, enum: ["verified", "notVerified"], default: "verified" },
 });
 
 export default mongoose.model("File", fileSchema);

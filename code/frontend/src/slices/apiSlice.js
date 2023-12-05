@@ -5,7 +5,7 @@ const baseQuery = fetchBaseQuery({ baseUrl: BASE_URL, credentials: "include" });
 
 export const apiSlice = createApi({
   baseQuery,
-  tagTypes: ["Auth"],
+  tagTypes: ["Auth", "Printer"],
   // eslint-disable-next-line no-unused-vars
   endpoints: (builder) => ({}),
 });

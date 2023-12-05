@@ -12,7 +12,8 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ManagePrinterPage from "./pages/admin/ManagePrinterPage";
 import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
 import CustomerServicePage from "./pages/admin/CustomerServicePage";
-import BuyingPage from "./pages/BuyingPage.jsx";
+import FilePreviewPage from "./pages/FilePreviewPage.jsx";
+import AdminHistoryPage from "./pages/admin/HistoryPage";
 import SSOPage from "./pages/SSOPage";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -32,13 +33,13 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route index={true} path="/" element={<HomePage />} />
         <Route path="/instruction" element={<InstructionPage />} />
-        <Route path="/printing" element={<PrintingPage />} />
         <Route path="" element={<CustomerRoute />}>
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
-          <Route path="/buying" element={<BuyingPage />} />
+          <Route path="/printing" element={<PrintingPage />} />
+          <Route path="/preview/:id" element={<FilePreviewPage />} />
         </Route>
-        <Route path="" element={<AdminRoute />}>
+        <Route path="/admin" element={<AdminRoute />}>
           <Route path="/admin/printer-manage" element={<ManagePrinterPage />} />
           <Route
             path="/admin/printing-manage"
@@ -47,6 +48,10 @@ const router = createBrowserRouter(
           <Route
             path="admin/customer-service"
             element={<CustomerServicePage />}
+          />
+          <Route
+            path="/admin/history"
+            element={<AdminHistoryPage />}
           />
         </Route>
       </Route>
