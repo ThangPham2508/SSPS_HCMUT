@@ -29,14 +29,35 @@ npm --version
 ```
 
 ### Usage
-#### Install Dependencies
+Do the following steps: 
+#### Setup
+- Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+####   Env Variables
+Rename the `.env.example` file to `.env` and add the following
 ```
+PORT = 5000
+MONGO_URI = your mongodb uri
+CLIENT_ID=364725832565-sdipbuf9vroi58bv7enof7jqd1g6rg04.apps.googleusercontent.com
+CLIENT_SECRET=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
+COOKIE_KEY_1=secret
+COOKIE_KEY_2=secretter
+```
+#### Install Dependencies
+- Make sure you are in /code folder.
+```
+npm install
 cd frontend
 npm install
 ```
+#### Seed Database
+- Make sure you are in /code folder.
+- Use the following commands to seed the database with sample printers and configuration data.
+```
+# Import data
+npm run data:import
+```
 #### Run
-- Make sure you are in frontend folder.
+- Make sure you are in /code folder.
 ```
 npm run dev
 ```
-
