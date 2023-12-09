@@ -24,7 +24,7 @@
 \hline Use case name: & \multicolumn{3}{|l|}{Login} \\
 \hline Created by: & Nguyễn Đình Quang & Last updated by: &  Nguyễn Đình Quang \\
 \hline Date created: & 28/09/2023 & Date last updated: & 30/09/2023\\
-\hline Actors: & \multicolumn{3}{|l|}{ Authenticated User (SPSO và người dùng) } \\
+\hline Actors: & \multicolumn{3}{|l|}{ Authenticated User (SPSO và customer) } \\
 \hline Description: & \multicolumn{3}{|l|}{$\begin{array}{l}\text{Use case này cho phép Guest đăng nhập vào hệ thống } \end{array}$} \\
 
 \hline Trigger: & \multicolumn{3}{|l|}{$\begin{array}{l}\text{Click vào nút “Login” trên giao diện chính của website.} \end{array}$} \\
@@ -162,7 +162,7 @@
 \text { - Thiết bị của SPSO có kết nối mạng và kết nối với hệ thống }\\
 \text { - SPSO có quyền quản lý máy in }\end{array}$} \\
 \hline Postconditions: & \multicolumn{3}{|c|}{$\begin{array}{l}\text { Giao diện quản lý máy in hiển thị đối với SPSO.} \end{array}$} \\
-\hline Normal Flows: & \multicolumn{3}{|c|}{$\begin{array}{l}\text { 1. SPSO chọn "Printer management" trên thanh điều hướng. } \\
+\hline Normal Flows: & \multicolumn{3}{|c|}{$\begin{array}{l}\text { 1. SPSO chọn "Quản lý máy in" trên thanh điều hướng. } \\
 \text { 2. Hệ thống hiển thị giao diện quản lý máy in gồm danh sách các}\\
 \text{máy in và các nút thêm, xóa, xem, enable và disable. } \end{array}$} \\
 \hline  Alternative Flows: & \multicolumn{3}{|c|}{$\begin{array}{l} 
@@ -340,7 +340,7 @@
 
 \hline Trigger: & \multicolumn{3}{|l|}
 {$\begin{array}{l}
-\text{SPSO: Chọn nút "File Type Setting" tại thanh điều hướng. } \\
+\text{SPSO: Chọn nút "Cài đặt loại file in" tại giao diện quản lý in ấn. } \\
 \end{array}$} \\
 
 \hline Preconditions: & \multicolumn{3}{|l|}{$\begin{array}{l}\text { - SPSO có tài khoản trên website } \\
@@ -349,19 +349,19 @@
 
 \hline Postconditions: & \multicolumn{3}{|l|}{$\begin{array}{l}\text { Dữ liệu về định dạng tệp in  (file type) cho phép đã được update trong database.} \end{array}$} \\
 \hline Normal Flows: & \multicolumn{3}{|l|}
-{$\begin{array}{l}\text { 1. SPSO chọn "File Type Setting" trên thanh điều hướng,}\\
-\text{ hệ thống hiển thị những định dạng file hiện tại } \\
-\text { 2. SPSO chọn "Add file type",  Hệ thống hiển thị ô điền } \\
+{$\begin{array}{l}\text { 1. SPSO chọn "Cài đặt loại file in"tại giao diện quản lý in ấn,}\\
+\text{ hệ thống hiển thị những định dạng file hiện tại} \\
+\text { 2. SPSO chọn "+",  hệ thống hiển thị ô điền } \\
 \text { 3. SPSO nhập file type mới gồm 3 chữ cái trở lên}\\
-\text { 4. SPSO chọn Apply.} \\
+\text { 4. Hệ thống hiển thị form xác nhận và SPSO chọn Apply.} \\
 \text{Hệ thống xác nhận thay đổi, cập nhật lại database,}\\
-\text{ quay lại giao diện trang chủ }
+\text{ quay lại giao diện cài đặt loại file in. }
 \end{array}$} \\
 \hline  Alternative Flows: & \multicolumn{3}{|l|}
 {$
 \begin{array}{l}\textbf { A1: Tại bước 2 } \\
-\text { 2.1 SPSO chọn "Remove file type", Hệ thống hiển thị ô điền } \\
-\text {Tiếp tục tại bước 3 trong Normal Flows.} \\
+\text { 2.1 SPSO chọn vào một loại file in} \\
+\text {Tiếp tục tại bước 4 trong Normal Flows.} \\
 \end{array}
 $} \\
 
@@ -378,12 +378,12 @@ $} \\
 \hline
 \end{tabular}
 
-\subsubsection{Chọn ngày tặng giấy}
+\subsubsection{Cài đặt tặng giấy}
 \subsubsubsection{Use-case diagram}
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=1\textwidth]{Images/Requirement Elicitation/FreeSheetSetting_Use-case.png}
-        \caption{Use-case diagram cho tính năng quà tặng}
+        \caption{Use-case diagram cho tính năng cài đặt tặng giấy}
         \label{fig:arch}
     \end{center}
 \end{figure}
@@ -394,35 +394,34 @@ $} \\
 \hline Date created: & $28 / 09 / 2023$ & Date last updated: & $28 / 09 / 2023$\\
 \hline Actors: & \multicolumn{3}{|c|}{ SPSO } \\
 \hline Description: & \multicolumn{3}{|c|}{$\begin{array}{l}
-\text { SPSO dùng tính năng tặng quà cho user } \\
+\text { SPSO có thể cài đặt các thông số cho việc tặng giấy cho customer. } \\
 \end{array}$} \\
 
 \hline Trigger: & \multicolumn{3}{|l|}
 {$\begin{array}{l}
-\text{SPSO: Chọn nút "Free sheet setting" tại thanh điều hướng. } \\
+\text{SPSO: Chọn nút "Cài đặt tặng giấy" tại giao diện quản lý in ấn. } \\
 \end{array}$} \\
 
 \hline Preconditions: & \multicolumn{3}{|l|}{$\begin{array}{l}\text { - SPSO có tài khoản trên website } \\
 \text { - SPSO đã đăng nhập thành công vào hệ thống với quyền hạn SPSO}\\
 \text { - Thiết bị của SPSO có kết nối mạng và kết nối với hệ thống }\end{array}$} \\
 
-\hline Postconditions: & \multicolumn{3}{|l|}{$\begin{array}{l}\text { Dữ liệu về ngày tặng quà, số giấy đã được update trong database} \\
+\hline Postconditions: & \multicolumn{3}{|l|}{$\begin{array}{l}\text { Dữ liệu về ngày tặng giấy, số giấy được tặng đã được update trong database} \\
 \text { và trên giao diện website.}
 \end{array}$} \\
 \hline Normal Flows: & \multicolumn{3}{|l|}
-{$\begin{array}{l}\text { 1. SPSO chọn "Free sheet setting" trên thanh điều hướng,}\\
-\text{ hệ thống hiển thị trang "Free sheet status" trước đó } \\
-\text { 2. SPSO chọn "Change default num pages",  Hệ thống hiển thị ô điền } \\
-\text { 3. SPSO nhập dữ liệu }\\
-\text { 4. SPSO chọn Apply}
-\text{ Hệ thống xác nhận thay đổi, cập nhật lại database, }\\
-\text{ quay lại giao diện trang chủ }
+{$\begin{array}{l}\text { 1. SPSO chọn "Cài đặt tặng giấy" tại giao diện quản lý in ấn,}\\
+\text{ hệ thống hiển thị giao diện cài đặt tặng giấy } \\
+\text { 2. SPSO chọn "Chỉnh sửa",  Hệ thống hiển thị form điền } \\
+\text { 3. SPSO thực hiện chỉnh sửa }\\
+\text { 4. SPSO chọn Xác nhận}\\
+\text{ 5. Hệ thống xác nhận thay đổi, cập nhật lại database, }\\
+\text{ quay lại giao diện cài đặt tặng giấy}
 \end{array}$} \\
 \hline  Alternative Flows: & \multicolumn{3}{|l|}
 {$
-\begin{array}{l}\textbf { A1: Tại bước 2 } \\
-\text { 2.1 SPSO chọn "Change giving day", Hệ thống hiển thị ô điền } \\
-\text {Tiếp tục tại bước 3 trong Normal Flows.} \\
+\begin{array}{l}
+\text { Không} 
 \end{array}
 $} \\
 
@@ -605,7 +604,7 @@ $} \\
 \subsubsubsection{Use case diagram}
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\textwidth]{Images/Requirement Elicitation/Logging_Use-case.png}
+        \includegraphics[width=1\textwidth]{Images/Requirement Elicitation/log-usecase.png}
         \caption{Use-case diagram cho chức năng truy cập lịch sử in}
     \end{center}
 \end{figure}
@@ -628,15 +627,16 @@ $} \\
 \text {Dữ liệu lịch sử in ấn không bị thay đổi.}\end{array}$} \\
 \hline Normal Flows: & \multicolumn{3}{|l|}{$\begin{array}{l}\text {1. SPSO click vào ô “View Printing History” trên thanh điều hướng. } \\
 \text {2. Hệ thống hiển thị mặc định thông tin lịch sử in của tất cả người} \\
-\text {dùng đã đăng ký cùng các bộ lọc (theo thời gian hoặc ID máy in) } \\
-\text {và thanh tìm kiếm ID người dùng. } \\
+\text {dùng đã đăng ký cùng các bộ lọc (theo thời gian hoặc ID máy in), } \\
+\text {thanh tìm kiếm theo ID người dùng và sibebar chọn theo tình trạng tài liệu. } \\
 \text {Thông tin hiển thị bao gồm: ID người sử dụng, ID máy in, tên file,  } \\
-\text {thời điểm bắt đầu và kết thúc in, số trang in với mỗi kích thước trang. } \\
-\text {Các thông tin được phân trang với tối đa 10 thông tin mỗi trang.}\end{array}$} \\
+\text {tình trạng in, số trang in. } \\
+\text {Các thông tin được phân trang với tối đa 4 thông tin mỗi trang.}\end{array}$} \\
 \hline  Alternative Flows: & \multicolumn{3}{|l|}{$\begin{array}{l}\textbf{A1: tại bước 2 } \\
-\text {2a: SPSO sử dụng bộ lọc hoặc thanh tìm kiếm. } \\
+\text {2a: SPSO sử dụng bộ lọc, thanh tìm kiếm hoặc sibebar. } \\
 \text {2b: Hệ thống chỉ hiển thị thông tin lịch sử in trong khoảng thời gian,} \\ 
-\text {của máy in được chọn và/hoặc của người dùng có ID trên thanh tìm kiếm. }
+\text {của máy in được chọn, của người dùng có ID trên thanh tìm kiếm hoặc theo}\\
+\text{tình trạng của tài liệu. }
 \end{array}$} \\
 \hline Exceptions: & \multicolumn{3}{|l|}{$\begin{array}{l}\textbf{E1: tại bước 2 } \\
 \text {2a: SPSO sử dụng bộ lọc thời gian không hợp lệ (ngày bắt đầu sau ngày } \\
@@ -670,16 +670,16 @@ $} \\
 \end{array}$} \\
 \hline Normal Flows: & \multicolumn{3}{|l|}{$\begin{array}{l}
 \text{1. User click vào ô “View Printing History” trên thanh điều hướng.} \\
-\text{2. Hệ thống hiển thị trang lịch sử in cá nhân bao gồm thông tin lịch } \\
-\text{sử in ấn cá nhân và các bộ lọc (theo khoảng thời gian và ID máy in). } \\
-\text{Mỗi thông tin lịch sử in được hiển thị bao gồm: ID người dùng, ID máy} \\
-\text{in, tên file, thời điểm bắt đầu và kết thúc in, số trang in ứng với mỗi} \\
-\text{kích thước trang. Các thông tin được phân trang với tối đa 10 thông } \\
-\text{tin mỗi trang.} \\
+\text{2. Hệ thống hiển thị trang lịch sử in cá nhân bao gồm thông tin lịch sử in ấn cá} \\
+\text{nhân và các bộ lọc (theo khoảng thời gian, ID máy in và tình trạng tài liệu). } \\
+\text{Mỗi thông tin lịch sử in được hiển thị bao gồm: ID máy in, tên file, tình trạng,} \\
+\text{ số trang in.} \\
+\text{Các thông tin được phân trang với tối đa 4 thông tin mỗi trang.} \\
 \end{array}$} \\
 \hline Alternative Flows: & \multicolumn{3}{|l|}{$\begin{array}{l}
 \textbf{A1: tại bước 2} \\
-\text{2a: User sử dụng bộ lọc theo thời gian hoặc theo ID máy in.} \\
+\text{2a: User sử dụng bộ lọc theo thời gian, theo ID máy in hoặc chọn tình trạng} \\
+\text{in theo sibebar.}\\
 \text{2b: Hệ thống hiển thị thông tin lịch sử in thỏa mãn các điều kiện của } \\
 \text{bộ lọc.}
 \end{array}$} \\

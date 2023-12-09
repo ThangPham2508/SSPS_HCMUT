@@ -14,7 +14,7 @@ Nếu giá trị sai sẽ yêu cầu nhập lại username và password, nếu g
 \subsubsection{In}
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{Images/System Modelling/Printing_Sequence.png}
+        \includegraphics[width=1\textwidth]{Images/System Modelling/Printing_Sequence.png}
         \caption{Sequence diagram cho module in}
     \end{center}
 \end{figure}
@@ -120,44 +120,40 @@ Tiếp theo, SPSO có 2 luồng lựa chọn song song:
 \end{itemize}
 
 \subsubsection{Lịch sử in}
+\textbf{Mô tả cho sequence diagram cho use case truy cập lịch sử in của Khách hàng:}\par
+
+Đầu tiên, khách hàng điều hướng tới trang Lịch sử In, giao diện lịch sử in gọi hàm onOpen(). Rồi giao diện Lịch sử In sẽ gọi hàm getHistoryLogs() của logController với tham số là ID khách hàng. logController sẽ truy xuất dữ liệu lịch sử in từ cơ sở dữ liệu. Sau khi thu được dữ liệu lịch sử in, logController sẽ trả về dữ liệu cho giao diện để hiển thị cho khách hàng. \par
+
+Nếu khách hàng sử dụng bộ lọc thời gian, giao diện sẽ truyền thêm tham số timePeriod vào hàm getHistoryLogs(). Trước hết, logController sẽ kiểm tra tính hợp lệ của thời gian người dùng nhập vào, nếu không hợp lệ sẽ báo lỗi. Nếu thời gian hợp lệ, logController sẽ lấy dữ liệu lịch sử in từ cơ sở dữ liệu và lọc lại dữ liệu trong khoảng thời gian khách hàng truyền vào. logController sẽ trả về kết quả cho giao diện hiển thị. \par
+
+Nếu khách hàng sử dụng navbar lọc theo status, logInterface sẽ yêu cầu logController gọi hàm getHistoryLogs(status). Rồi logController sẽ truy cập vào cơ sở dữ liệu để lấy dữ liệu lịch sử in theo status và trả kết quả cho giao diện hiển thị.\par
+
+Nếu khách hàng sử dụng bộ lọc theo máy in, logInterface sẽ yêu cầu danh sách các máy in từ logController. Sau đó, logController sẽ truy xuất danh sách các máy in đang hoạt động từ cơ sở dữ liệu và trả về cho giao diện. Khách hàng sẽ chọn các máy in được hiển thị và giao diện sẽ gọi hàm getHistoryLogs() với ID máy in được chọn. logController truy xuất dữ liệu lịch sử in thỏa các bộ lọc từ cơ sở dữ liệu và trả về cho giao diện hiển thị.\par
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.95\textwidth]{Images/System Modelling/Logging(customer)_Sequence.png}
+        \includegraphics[width=0.77\textwidth]{Images/System Modelling/Logging(customer)_Sequence.png}
         \caption{Sequence diagram cho use case truy cập lịch sử in của Khách hàng}
         \label{fig:arch}
     \end{center}
 \end{figure}
 
-\textbf{Mô tả:}\par
-
-Đầu tiên, khách hàng điều hướng tới trang Lịch sử In. Giao diện Lịch sử In sẽ gọi hàm getHistoryLogs() của logController với tham số là ID khách hàng. Trước hết, logController sẽ lấy dữ liệu từ bộ nhớ cache. Trong trường hợp cache miss, logController sẽ truy xuất dữ liệu lịch sử in từ cơ sở dữ liệu. Sau khi thu được dữ liệu lịch sử in, logController sẽ trả về dữ liệu cho giao diện đẻ hiển thị cho khách hàng. Đồng thời, logController cũng sẽ thống kê số trang in cho mỗi loại trang từ dữ liệu lịch sử in và trả về kết quả cho giao diện hiển thị. \par
-
-Nếu khách hàng sử dụng bộ lọc thời gian, giao diện sẽ truyền thêm tham số timePeriod vào hàm getHistoryLogs(). Trước hết, logController sẽ kiểm tra tính hợp lệ của thời gian người dùng nhập vào, nếu không hợp lệ sẽ báo lỗi. Nếu thời gian hợp lệ, logController sẽ lấy dữ liệu lịch sử in từ bộ nhớ cache hoặc cơ sở dữ liệu và lọc lại dữ liệu trong khoảng thời gian khách hàng truyền vào. logController sẽ trả về kết quả cho giao diện hiển thị.
-
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{Images/System Modelling/Logging(SPSO)_Sequence(1).png}
-        \caption{Sequence diagram cho use case truy cập lịch sử in của SPSO (1)}
-        \label{fig:arch}
-    \end{center}
-\end{figure}
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.9\textwidth]{Images/System Modelling/Logging(SPSO)_Sequence(2).png}
-        \caption{Sequence diagram cho use case truy cập lịch sử in của SPSO (2)}
+        \includegraphics[width=0.7\textwidth]{Images/System Modelling/Logging(SPSO)_Sequence(1).png}
+        \caption{Sequence diagram cho use case truy cập lịch sử in của SPSO}
         \label{fig:arch}
     \end{center}
 \end{figure}
 
 \textbf{Mô tả:}\par
 
+Đầu tiên, SPSO điều hướng tới trang Lịch sử In, giao diện lịch sử in gọi hàm onOpen(). Rồi giao diện Lịch sử In sẽ gọi hàm getHistoryLogs() của logController. logController sẽ truy xuất dữ liệu lịch sử in từ cơ sở dữ liệu. Sau khi thu được dữ liệu lịch sử in, logController sẽ trả về dữ liệu cho giao diện để hiển thị cho SPSO. \par
 
-Đầu tiên, khách hàng điều hướng tới trang Lịch sử In. Giao diện Lịch sử In sẽ gọi hàm getHistoryLogs() của logController. Sau đó, logController sẽ lấy dữ liệu lịch sử in từ cơ sở dữ liệu và trả dữ liệu về cho giao diện hiển thị.\par
+Nếu SPSO sử dụng bộ lọc thời gian, giao diện sẽ truyền thêm tham số timePeriod vào hàm getHistoryLogs(). Trước hết, logController sẽ kiểm tra tính hợp lệ của thời gian người dùng nhập vào, nếu không hợp lệ sẽ báo lỗi. Nếu thời gian hợp lệ, logController sẽ lấy dữ liệu lịch sử in từ cơ sở dữ liệu và lọc lại dữ liệu trong khoảng thời gian SPSO truyền vào. logController sẽ trả về kết quả cho giao diện hiển thị. \par
 
-Nếu SPSO sử dụng bộ lọc thời gian và nhập vào khoảng thời gian hợp lệ, logInterface sẽ gọi hàm getHistoryLogs() của logController với thêm tham số timePeriod. logController sẽ truy xuất dữ liệu từ cơ sở dữ liệu với tham số timePeriod vừa nhận được cùng các tham số userID, printerID (trong trường hợp SPSO sử dụng nhiều bộ lọc cùng lúc) để lọc ra những công việc in thỏa bộ lọc. Sau đó, logController sẽ trả về dữ liệu cho giao diện hiển thị. Trong trường hợp thời gian người dùng nhập vào không hợp lệ, logController sẽ báo lỗi.\par
+Nếu SPSO sử dụng navbar lọc theo status, logInterface sẽ yêu cầu logController gọi hàm getHistoryLogs(status). Rồi logController sẽ truy cập vào cơ sở dữ liệu để lấy dữ liệu lịch sử in theo status và trả kết quả cho giao diện hiển thị.\par
 
-Nếu SPSO sử dụng bộ lọc theo userID, logInterface sẽ gọi hàm getHistoryLogs() của logController với tham số userID. Trước hết, logController sẽ kiểm tra xem người dùng có tồn tại trong userDatabase hay không. Nếu có, logController sẽ truy xuất dữ liệu từ cơ sở dữ liệu với tham số userID vừa nhận được cùng các tham số timePeriod, printerID (trong trường hợp SPSO sử dụng nhiều bộ lọc cùng lúc) và trả về dữ liệu cho giao diện hiển thị.\par
+Nếu SPSO sử dụng bộ lọc theo userID, logInterface sẽ gọi hàm getHistoryLogs() của logController với tham số userID. Trước hết, logController sẽ kiểm tra xem người dùng có tồn tại trong userDatabase hay không. Nếu có, logController sẽ truy xuất dữ liệu từ cơ sở dữ liệu và trả về dữ liệu cho giao diện hiển thị. \par
 
 Nếu SPSO sử dụng bộ lọc theo máy in, logInterface sẽ yêu cầu danh sách các máy in từ logController. Sau đó, logController sẽ truy xuất danh sách các máy in đang hoạt động từ cơ sở dữ liệu và trả về cho giao diện. SPSO sẽ chọn các máy in được hiển thị và giao diện sẽ gọi hàm getHistoryLogs() với ID máy in được chọn. logController truy xuất dữ liệu lịch sử in thỏa các bộ lọc từ cơ sở dữ liệu và trả về cho giao diện hiển thị.\par

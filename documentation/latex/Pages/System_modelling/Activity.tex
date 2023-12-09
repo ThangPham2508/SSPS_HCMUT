@@ -20,7 +20,7 @@
 \textbf{Mô tả: }\par
 Đầu tiên, Customer chọn nút "In ngay" trên thanh điều hướng, hệ thống sẽ hiển thị danh sách các máy in. Sau đó Customer sẽ tiến hành chọn lọc máy in bằng cách lọc cơ sở, tòa, phòng. Hệ thống sẽ kiểm tra xem những máy in thỏa mãn điều kiện lọc có đang khả thi (không bảo trì) hay không. Nếu không có máy in khả thi nào thỏa điều kiện lọc, hệ thống sẽ quay về hiển thị danh sách máy in, ngược lại hệ thống sẽ hiển thị danh sách máy in thỏa điều kiện lọc. Tại đây Customer sẽ tiến hành chọn máy in, sau đó hệ thống sẽ hiển thị form và Customer sẽ tiến hành upload file cần in lên hệ thống. Hệ thống xác thực nội dung sẽ kiểm tra file có hợp lệ hay không. Nếu file không hợp lệ, hệ thống sẽ báo lỗi về màn hình. Ngược lại, hệ thống xác thực nội dung thành công, Customer sẽ điền thông tin về số trang cần in, thời gian in, định dạng cách in. Và hệ thống sẽ kiểm tra xem số giấy Customer cần in có đủ hay không. Nếu không thì sẽ báo lỗi về Customer, và Customer cần phải giảm số trang giấy cần in hoặc mua thêm giấy. Ngược lại, Customer sẽ xác nhận thao tác in của mình và hệ thống sẽ xử lý, sau đó thêm thông tin in của Customer vào hàng chờ để xử lý.
 
-\subsubsection{Use-case mua giấy}
+\subsubsection{Mua giấy}
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{Images/System Modelling/Buying_Activity.png}
@@ -45,7 +45,7 @@ Tại giao diện "In ngay", sinh viên chọn vào "Mua giấy", hệ thống s
 \subsubsection{Sửa danh mục định dạng tệp cho phép in}
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{Images/System Modelling/FileTypeSetting_Activity.png}
+        \includegraphics[width=0.7\textwidth]{Images/System Modelling/FileTypeSetting_Activity.png}
         \caption{Activity diagram cho module Sửa định dạng tệp cho phép in}
         \label{fig:arch}
     \end{center}
@@ -53,15 +53,14 @@ Tại giao diện "In ngay", sinh viên chọn vào "Mua giấy", hệ thống s
 
 \textbf{Mô tả:}\par
 Bắt đầu, SPSO chọn "File type setting", sau đó cơ sở dữ liệu thực hiện tải những kiểu tệp được cho phép in hiện tại, và hiển thị chúng đồng thời với cửa sổ "File type setting" thông qua client. \par
-Tiếp theo, SPSO xem danh sách kiểu tệp được in và quyết định thao tác chọn "Add" hoặc "Delete". Khi đó cửa sổ "Add file type" hoặc "Delete file type" được hiển thị, người dùng tiếp tục nhập kiểu tệp muốn thay đổi và nhấn "Apply".\par
+Tiếp theo, SPSO xem danh sách kiểu tệp được in và quyết định thao tác chọn "Add" hoặc "Delete". Nếu chọn "Add", cửa sổ "Add file type" được hiển thị, người dùng tiếp tục nhập kiểu tệp muốn thay đổi và nhấn "Apply". Còn nếu chọn "Delete" thì chỉ cần nhấn "Apply".\par
 Nếu cơ sở dữ liệu kiểm tra thay đổi hợp lệ thì cập nhật dữ liệu, sau đó client sẽ hiển thị "Ok". Nếu không hợp lệ thì không cập nhật và client báo lỗi.\par
-Để kết thúc, người dùng thao tác chọn "Continue", về mainmenu.
-
+Để kết thúc, người dùng thao tác chọn "Exit" hoặc có thể tiếp tục ở giao diện chỉnh sửa loại tệp cho phép in.
 
 \subsubsection{Quản lý tặng giấy miễn phí}
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{Images/System Modelling/FreeSheetSetting_Activity.png}
+        \includegraphics[width=0.7\textwidth]{Images/System Modelling/FreeSheetSetting_Activity.png}
         \caption{Activity diagram cho module Quản lý tặng giấy miễn phí}
         \label{fig:arch}
     \end{center}
@@ -69,30 +68,28 @@ Nếu cơ sở dữ liệu kiểm tra thay đổi hợp lệ thì cập nhật d
 
 \textbf{Mô tả:}\par
 Bắt đầu, SPSO chọn "Free sheet setting", sau đó cơ sở dữ liệu thực hiện tải trạng thái ngày phát giấy miễn phí, số lượng của giấy miễn phí hiện tại, và hiển thị chúng đồng thời với cửa sổ "Free sheet setting" thông qua client. \par
-Tiếp theo, SPSO xem danh sách kiểu tệp được in và quyết định thao tác chọn "Change giving day" hoặc "Change amount". Khi đó cửa sổ "Change giving day" hoặc "Change amount" được hiển thị, người dùng tiếp tục nhập thay đổi (Ngày hoặc số tờ giấy) và nhấn "Apply".\par
-Cơ sở dữ liệu tiếp tục thay đổi, sau đó cập nhật dữ liệu, sau đó client sẽ hiển thị "Ok".\par
-Để kết thúc, người dùng thao tác chọn "Continue", về mainmenu.
-
-
+Tiếp theo, SPSO xem và chọn "Edit". Khi đó cửa sổ "Edit" được hiển thị, người dùng thực hiện thay đổi (Ngày hoặc số tờ giấy) và nhấn "Apply".\par
+Nếu cơ sở dữ liệu kiểm tra thay đổi hợp lệ thì cập nhật dữ liệu, sau đó client sẽ hiển thị "Ok". Nếu không hợp lệ thì không cập nhật và client báo lỗi.\par
+Để kết thúc, người dùng thao tác chọn "Exit" hoặc có thể tiếp tục ở giao diện cài đặt tặng giấy.
 
 \subsubsection{Lịch sử in}
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.55\textwidth]{Images/System Modelling/Logging(customer)_Activity.png}
+        \includegraphics[width=1\textwidth]{Images/System Modelling/Logging(customer)_Activity.png}
         \caption{Activity diagram cho use case truy cập lịch sử in của Khách hàng}
         \label{fig:arch}
     \end{center}
 \end{figure}
 \textbf{Mô tả:}\par
-Đầu tiên, khách hàng điều hướng đến trang Lịch sử in. Hệ thống sẽ hiển thị lịch sử tất cả các công việc in ấn cũng như thống kê tổng số trang đã in đối với mỗi loại trang in. Khách hàng có thể chọn bộ lọc thời gian để xác định khoảng thời gian mà họ quan tâm. Hệ thống sẽ kiểm tra tính hợp lệ của khoảng thời gian này. Nếu khoảng thời gian hợp lệ, nó sẽ hiển thị danh sách công việc in ấn và thống kê số trang in trong khoảng thời gian đó. Nếu khoảng thời gian không hợp lệ, hệ thống sẽ hiển thị thông báo lỗi. Cuối cùng, người dùng xem các thông tin cần thiết và thoát trang Lịch sử in.
+Đầu tiên, khách hàng điều hướng đến trang Lịch sử in. Hệ thống sẽ hiển thị tất cả lịch sử in ấn của khách hàng đó. Khách hàng có thể chọn bộ lọc để lọc bớt dữ liệu. Cuối cùng, người dùng xem các thông tin cần thiết và thoát trang Lịch sử in.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.8\textwidth]{Images/System Modelling/Logging(SPSO)_Activity.png}
+        \includegraphics[width=1\textwidth]{Images/System Modelling/Logging(SPSO)_Activity.png}
         \caption{Activity diagram cho use case truy cập lịch sử in của SPSO}
         \label{fig:arch}
     \end{center}
 \end{figure}
 
 \textbf{Mô tả:}\par
-Đầu tiên, SPSO điều hướng đến trang Lịch sử In. Hệ thống sẽ hiển thị tất cả các công việc in. SPSO có thể sử dụng các bộ lọc như lọc theo thời gian in, theo ID người dùng hoặc theo máy in để hiển thị công việc in ấn cần thiết. Đối với bộ lọc thời gian và ID người dùng, hệ thống sẽ kiểm tra tính hợp lệ của thông tin lọc người dùng nhập vào. Nếu thông tin hợp lệ, nó sẽ hiển thị danh sách công việc in ấn trong khoảng thời gian được chọn hoặc của người dùng có ID được tìm kiếm. Nếu thông tin lọc không hợp lệ, hệ thống sẽ hiển thị thông báo lỗi. Đối với bộ lọc theo máy in, hệ thống sẽ hiển thị một danh sách các máy in đang hoạt động để SPSO lựa chọn. Sau khi có thông tin cần thiết, SPSO thoát trang Lịch sử In.
+Đầu tiên, SPSO điều hướng đến trang Lịch sử in. Hệ thống sẽ hiển thị tất cả lịch sử in ấn của tất cả khách hàng. Khách hàng có thể chọn bộ lọc để lọc bớt dữ liệu. Cuối cùng, SPSO xem các thông tin cần thiết và thoát trang Lịch sử in.

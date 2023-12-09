@@ -5,9 +5,10 @@ $\indent$ Nhóm tác giả lựa chọn một trong những kiến trúc rất p
 \begin{figure}[H]
     \begin{center}
     \includegraphics[width=0.9\textwidth]{Images/Box-line + Deployment/MVC.png}
-        \caption{Mô hình kiến trúc MVC \textcolor{blue}{(tham khảo từ GeeksforGeeks.org}}
+        \caption{Mô hình kiến trúc MVC \textcolor{blue}{(tham khảo từ GeeksforGeeks.org)}}
     \end{center}
 \end{figure}
+\subsubsection{Ưu và nhược điểm của MVC}
 $\indent$ \textbf{Ưu điểm của MVC:}
 \begin{itemize}
     \item Tách biệt giữa các thành phần: Mô hình MVC tách biệt các thành phần của ứng dụng thành Model, View và Controller. Điều này giúp làm rõ trách nhiệm của từng thành phần, dễ quản lý và duy trì mã nguồn.
@@ -21,51 +22,57 @@ $\indent$ \textbf{Nhược điểm của MVC:}
     \item Độ trễ cao: Sử dụng mô hình MVC có thể tạo ra một chút độ trễ do việc truyền thông qua các thành phần khác nhau.
     \item Khó quản lý khi ứng dụng phức tạp: Đối với các ứng dụng rất phức tạp, quản lý các thành phần và tương tác giữa chúng có thể trở nên khó khăn.
 \end{itemize}
+\subsubsection{Lí do lựa chọn MVC thay cho Layered architecture}
 $\indent$Từ việc tìm hiểu và phân tích những ưu nhược điểm của kiến trúc MVC. Nhóm tác giả quyết định lựa chọn kiến trúc này bởi vì:
 \begin{itemize}
-    \item Vì MVC tách biệt giữa các thành phần nên việc phân công giữa các thành viên sẽ dễ dàng hơn. Hơn nữa việc tích hợp và phát triển đồng bộ sẽ phù hợp cho dự án gồm nhiều thành viên.
-    \item SPSS là một hệ thống vừa và nhỏ do đó sẽ giảm bớt khó khăn trong việc quản lý ứng dụng.
+    \item Vì MVC tách biệt giữa các thành phần nên việc phân công giữa các thành viên sẽ dễ dàng hơn. Hơn nữa việc tích hợp và phát triển đồng bộ sẽ phù hợp hơn sơ với kiến trúc layered cho dự án gồm nhiều thành viên bởi trong kiến trúc layered mỗi tầng là một khối chức năng cụ thể, các tầng bên trên sẽ sử dụng dịch vụ của tầng biên dưới khi đó các thành viên hiện thực các khối chức năng năng khác nhau sẽ khó có thể cùng nhau kiểm thử module của mình.
+    \item MVC được hỗ trợ bởi nhiều framework và thư viện. Điều này giúp việc phát triển ứng dụng MVC trở nên dễ dàng hơn so với kiến trúc Layered
+    \item SPSS là một hệ thống vừa và nhỏ do đó MVC sẽ giảm bớt khó khăn trong việc quản lý ứng dụng.
     \item Hơn hết, MVC là một mô hình phổ biến và được áp dụng rộng rãi. Vì thế việc sử dụng mô hình này như một cơ hội để nhóm tác giả tìm hiểu và vận dụng một cách hiệu quả sau này.
 \end{itemize}
 \subsection{Architectural diagram và Deployment diagram}
 \subsubsection{Architectural diagram cho toàn hệ thống}
 \begin{figure}[H]
     \begin{center}
-    \includegraphics[width=1\textwidth]{Images/Box-line + Deployment/ArchitectureDiagram.drawio.png}
+    \includegraphics[width=1\textwidth]{Images/Box-line + Deployment/Box-line.drawio.png}
 \caption{Architectural diagram}
     \end{center}
 \end{figure}
-Để xem rõ hơn bản vẽ của nhóm, truy cập tại \href{https://drive.google.com/file/d/1vgr0dHbZ-yCTvMx9BN5ZEvlmdY8I_FYY/view?usp=sharing}{đây} 
+Để xem rõ hơn bản vẽ của nhóm, truy cập tại \href{https://drive.google.com/file/d/1FlW35PCz3uM8nGH6Ceg9soVdlz6sk9Pz/view?usp=sharing}{đây} 
 \begin{itemize}
-    \item \textbf{Authentication:}
+    \item \textbf{Model:}
     \begin{itemize}
         \item \textbf{UserModel:} Quản lý thuộc tính và logic của User để xác thực tài khoản.
-        \item \textbf{LoginScreen:} Phần giao diện người dùng liên quan đến xác thực.
-        \item \textbf{UserController:} Điều khiển logic và tương tác với UserModel và LoginScreen. Kết nối với Google/HCMUT\_SSO.
-    \end{itemize}
-    \item \textbf{Printing:}
-    \begin{itemize}
         \item \textbf{PrintModel:} Quản lý thuộc tính in ấn và tài liệu.
-        \item \textbf{PrintView:} Giao diện người dùng cho việc in tài liệu.
-        \item \textbf{PrintController:} Điều khiển logic in ấn và sự tương tác giữa PrintModel và PrintView
-    \end{itemize}
-    \item \textbf{Printer Management:}
-    \begin{itemize}
         \item \textbf{PrinterModel:} Quản lý các thuộc tính và xử lý logic dữ liệu liên quan tới máy in
-        \item \textbf{PrinterView:} Giao diện người dùng cho quản lý máy in.
-        \item \textbf{PrinterController:} Điều khiển logic quản lý máy in, tương tác với PrinterModel và PrinterView.
-    \end{itemize}
-    \item \textbf{Printing Management:}
-    \begin{itemize}
         \item \textbf{Printing Management Model:} Quản lý thông tin quản lý in ấn. Gồm 2 model đó à FreeSheetModel (quản lý thông tin về số giấy, ngày tặng miễn phí cho user) và FileTypeModel (quản lý dữ liệu về các loại file được phép in).
-        \item \textbf{Printing Management View:} Giao diện người dùng cho quản lý in ấn.
-        \item \textbf{Printing Management Controller:} Điều khiển logic quản lý in ấn, tương tác với Printing Management Model và Printing Management View.
-    \end{itemize}
-    \item \textbf{Logs:}
-    \begin{itemize}
         \item \textbf{LogsModel:} Quản lý và lưu trữ lịch sử in ấn.
+        \item \textbf{BuyModel: }Quản lý lưu trữ việc mua giấy.
+        
+    \end{itemize}
+    \item \textbf{View:}
+    \begin{itemize}
+    \item \textbf{UserView:} Phần giao diện người dùng liên quan đến xác thực.
+        \item \textbf{PrintView:} Giao diện người dùng cho việc in tài liệu.
+        \item \textbf{PrinterView:} Giao diện người dùng cho quản lý máy in.
         \item \textbf{LogsView:} Giao diện người dùng cho xem lịch sử in ấn.
-        \item \textbf{LogsController:} Điều khiển logic xem lịch sử in ấn, tương tác với Logs Model và Logs View. Ngoài ra còn tương tác với UserModel và PrinterModel để yêu cầu một số thông tin như ID user, ID máy in
+        \item \textbf{BuyView:} Giao diện người dùng cho việc mua giấy.
+    \end{itemize}
+    \item \textbf{Controller:}
+    \begin{itemize}
+    \item \textbf{UserController:} Điều khiển logic và tương tác với UserModel và UserView. Kết nối với Google/HCMUT\_SSO.
+    \item \textbf{PrintController:} Điều khiển logic in ấn và sự tương tác giữa PrintModel và PrintView
+        \item \textbf{PrinterController:} Điều khiển logic quản lý máy in, tương tác với PrinterModel và PrinterView.
+        \item \textbf{Printing Management Controller:} Điều khiển logic quản lý in ấn, tương tác với Printing Management Model và Printing Management View.
+        \item \textbf{LogsController:} Điều khiển logic xem lịch sử in ấn, tương tác với Logs Model và Logs View. Ngoài ra còn tương tác với UserModel và PrinterModel để yêu cầu một số thông tin như ID user, ID máy in.
+        \item \textbf{BuyController:}  Điều khiển logic và tương tác với BuyModel và BuyView
+    \end{itemize}
+    \iten \textbf{Sự tương tác giữa các thành phần:}
+    \begin{itemize}
+        \item Những tương tác của người dùng lên phần view sẽ trở thành sự kiện để gọi các hàm tương ứng ở controller.
+        \item  Các hàm trong controller nếu cần có thể lấy dữ liệu từ hệ thống ở lớp model, xử lí và gửi phản hồi tới người dùng thông qua view
+        \item Lớp model được dùng để truy vấn dữ liệu hoặc cập nhật dữ liệu trong database, cung cấp dữ liệu cho controller xử lí. Có thể gửi thông báo thẳng đến view (không cần thông qua controller.
+        \item Browser được dùng để thực hiện các giao thức HTTP response/ request giữa client và server và hiển thị kết quả ra màn hình của người dùng.
     \end{itemize}
 \end{itemize}
 \subsubsection{Deployment diagram cho toàn hệ thống}
@@ -76,7 +83,7 @@ $\indent$Từ việc tìm hiểu và phân tích những ưu nhược điểm c�
         \caption{Deployment diagram}
     \end{center}
 \end{figure}
-Để xem rõ hơn bản vẽ của nhóm, truy cập tại \href{https://drive.google.com/file/d/1t1EVsOUQxixdM85v2Ch99MjhRM3ihQc9/view?usp=sharing}{đây} .
+$\indent$Để xem rõ hơn bản vẽ của nhóm, truy cập tại \href{https://drive.google.com/file/d/1t1EVsOUQxixdM85v2Ch99MjhRM3ihQc9/view?usp=sharing}{đây} .
 \subsubsubsection{Mô tả Deployment Diagram}
 \begin{itemize}
     \item Hệ thống là một ứng dụng Web, được phát triển theo kiến trúc MVC, bao gồm 3 máy chủ chính: Client, Server và Database Server.
@@ -153,7 +160,7 @@ Các interface:
 
 \begin{figure}[H]
     \begin{center}        
-    \includegraphics[width=0.8\textwidth]{Images/Architecture Design/PS_Component.png}
+    \includegraphics[width=1\textwidth]{Images/Architecture Design/PS_Component.png}
         \caption{Component diagram cho module quản lý định dạng}
         \label{fig:arch}
     \end{center}
