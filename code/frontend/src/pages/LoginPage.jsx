@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [language, setLanguage] = useState("vie");
 
   const handleClick = async (role) => {
-    window.location.href = `http://localhost:5000/auth/role?role=${encodeURIComponent(
+    window.location.href = `/auth/role?role=${encodeURIComponent(
       role,
     )}`;
   };
