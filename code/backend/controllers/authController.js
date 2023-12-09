@@ -8,7 +8,7 @@ const login = passport.authenticate("google", {
 const callback = [
   passport.authenticate("google", {
     failureRedirect: "/auth/failure",
-    successRedirect: "http://localhost:5000",
+    successRedirect: "http://localhost:5173",
     session: true,
   }),
 ];
@@ -20,7 +20,7 @@ const logout = (req, res, next) => {
       return next(err);
     }
   });
-  res.redirect("http://localhost:5000")
+  res.redirect("http://localhost:5173")
 };
 
 const failure = (req, res) => {
