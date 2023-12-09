@@ -12,6 +12,8 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Select,
+  Option
 } from "@material-tailwind/react";
 
 const ButtonList = () => {
@@ -60,17 +62,21 @@ const ButtonList = () => {
     setOpenAdd(false);
   };
 
+  const handleSelectChange = (value) => {
+    setNewButtonType(value);
+  };
+
   return (
-    <div className="grid grid-cols-2 gap-8 bg-blue-200 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
       {typeList?.map((type, index) => (
         <div key={index}>
-          <button
-            className="w-30 m-4 bg-red-700"
+          <Button
+            className="w-30 m-4 bg-blue-400"
             key={index}
             onClick={() => handleButtonClick(type)}
           >
             <img className="" src={typeIcon[type]} alt={typeList[index]} />
-          </button>
+          </Button>
         </div>
       ))}
       <Dialog open={open} handler={handleOpen}>
@@ -85,20 +91,29 @@ const ButtonList = () => {
           </Button>
         </DialogFooter>
       </Dialog>
-      <button
-        className="w-30 m-4 bg-red-700"
+      <Button
+        className="w-30 m-4 bg-blue-400"
         onClick={() => handleButtonAddClick()}
       >
         <img className="" src={plussign} alt={"add"} />
-      </button>
+      </Button>
       <Dialog open={openAdd} handler={handleOpenAdd}>
         <DialogHeader>Bạn hãy nhập định dạng muốn thêm</DialogHeader>
         <DialogBody className="flex flex-col gap-3">
-          <input
-            type="text"
-            value={newButtonType}
-            onChange={(e) => setNewButtonType(e.target.value)}
-          />
+          <Select value={newButtonType} onChange={handleSelectChange}>
+            <Option value="jpg">jpg</Option>
+            <Option value="msword">msword</Option>
+            <Option value="doc">doc</Option>
+            <Option value="docx">docx</Option>
+            <Option value="pdf">pdf</Option>
+            <Option value="png">png</Option>
+            <Option value="pptx">pptx</Option>
+            <Option value="svg">svg</Option>
+            <Option value="text">text</Option>
+            <Option value="xls">xls</Option>
+            <Option value="xlsx">xlsx</Option>
+            <Option value="xps">xps</Option>
+          </Select>
         </DialogBody>
         <DialogFooter>
           <Button

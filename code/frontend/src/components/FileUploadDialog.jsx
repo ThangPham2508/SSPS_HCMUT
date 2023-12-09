@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -47,7 +47,7 @@ const FileUploadDialog = ({ open, handleOpen, printerId }) => {
       printerId: printerId,
       pageNum: (file.type.split("/")[1] === 'pdf' ? await getPageCount(file) : 1),
     };
-    const {data:fileId} = await createFile(f);
+    const {data: fileId} = await createFile(f);
 
     const formData = new FormData();
     formData.append("file", file);

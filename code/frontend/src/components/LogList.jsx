@@ -4,7 +4,7 @@ import {
   CheckBadgeIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/solid";
-import { Card, Button } from "@material-tailwind/react";
+import { Card, Button, Input } from "@material-tailwind/react";
 import moment from "moment";
 import Pagination from "./Pagination";
 import { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ const statusColor = {
 
 const LogItem = ({ file, printer, log, handleClick, admin }) => {
   return (
-    <Card className={`grid h-40 w-full grid-cols-10 gap-5`}>
+    <Card className="grid h-40 w-full grid-cols-10 gap-5 mb-5">
       <div className="col-span-1 flex w-32 items-center">
         <img src={filetype[file.type]} alt="" className="w-full p-[10px]" />
       </div>
@@ -61,8 +61,7 @@ const LogItem = ({ file, printer, log, handleClick, admin }) => {
             >
               <div className="w-1/12">{statusIcon[log.status]}</div>
               <p className="font-full w-2/3 text-center font-semibold">
-                {log.status} - created at{" "}
-                {moment(log.startTime).format("DD/MM/YYYY, h:mm:ss A")}
+                {log.status} - created at {moment(log.startTime).format("DD/MM/YYYY, h:mm:ss A")}
               </p>
             </div>
             <Button
@@ -82,31 +81,39 @@ const LogItem = ({ file, printer, log, handleClick, admin }) => {
 const LogList = ({ files, printers, logs, filter, handleClick, admin }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [logsPerPage] = useState(3);
+  const [userIDFilter, setUserIDFilter] = useState('');
 
   const indexOfLastLog = currentPage * logsPerPage;
   const indexOfFirstLog = indexOfLastLog - logsPerPage;
 
   const filteredLogs = logs?.filter((log) => {
     if (filter !== "all" && log.status !== filter) return false;
+    if (userIDFilter && !log.userId?.startsWith(userIDFilter)) return false;
     const exists =
       files?.some((file) => file._id === log.fileId) &&
       printers?.some((printer) => printer._id === log.printerId);
-    console.log(
-      exists
-    );
     return exists;
   });
 
-  const currentLogs = filteredLogs.slice(indexOfFirstLog, indexOfLastLog);
+  const currentLogs = filteredLogs?.slice(indexOfFirstLog, indexOfLastLog);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [logs, filter]);
+  }, [logs, filter, userIDFilter]);
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-5">
+      {admin ? <div className="self-end mt-1">
+        <Input
+          type="text"
+          value={userIDFilter}
+          onChange={(e) => setUserIDFilter(e.target.value)}
+          label="userID"
+          className="self-end"
+        />
+      </div> : null}
       {currentLogs?.map((log) => {
         const file = files?.find((file) => file._id === log.fileId);
         const printer = printers?.find(

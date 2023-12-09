@@ -47,7 +47,7 @@ const PrinterItem = ({ printer, canSelect }) => {
       <img src={PrinterImage} className="col-span-1" />
       <div className="col-span-3">
         <Typography variant="h5" color="blue-gray" className="mb-2 font-bold">
-          Mã máy: {printer.number}
+          Số hiệu: {printer.number}
         </Typography>
         <Typography variant="h5" color="blue-gray" className="mb-2 font-bold">
           Vị Trí:{" "}
@@ -130,7 +130,10 @@ const PrinterList = ({ printers, canSelect }) => {
       (printer) => printer.status === "enabled",
     );
   }
-  let currentPrinters = enabledPrinters?.slice(indexOfFirstPrinter, indexOfLastPrinter);
+  let currentPrinters = enabledPrinters?.slice(
+    indexOfFirstPrinter,
+    indexOfLastPrinter,
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

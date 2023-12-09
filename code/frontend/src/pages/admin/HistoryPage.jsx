@@ -132,7 +132,7 @@ const HistoryPage = () => {
         files={files}
         printers={printers}
         logs={logs}
-        filter="error"
+        filter="cancelled"
         handleClick={handleClick}
         admin={true}
       />,
@@ -155,7 +155,7 @@ const HistoryPage = () => {
   return isFilesLoading || isLogsLoading || isPrintersLoading ? (
     <div>Loading...</div>
   ) : (
-    <>
+    <div className="flex flex-col">
       <Typography variant="h4">LỊCH SỬ IN</Typography>
       <VerticalTabs item={tabItems} />
       <LogDialog
@@ -163,7 +163,7 @@ const HistoryPage = () => {
         handleOpen={handleOpen}
         log={logs?.find((log) => log._id === infoId)}
       />
-    </>
+    </div>
   );
 };
 

@@ -14,7 +14,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../slices/authslice";
-import { useLogoutMutation } from "../slices/authApiSlice";
 import { useSelector } from "react-redux";
 
 const ProfileMenu = () => {
@@ -22,13 +21,11 @@ const ProfileMenu = () => {
   const navigate = useNavigate();
   const { avatar, role } = useSelector((state) => state.auth.userData);
 
-  const [loggingOut] = useLogoutMutation();
-
-  const handleLogout = () => {
-    loggingOut();
+  const handleLogout = async () => {
+    window.open("http://localhost:5000/auth/logout", "_self");
     dispatch(logout());
-    navigate("/");
-  }
+  };
+
   const handleProfile = () => {
     navigate("/Profile");
   };
@@ -50,7 +47,10 @@ const ProfileMenu = () => {
           </Typography>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem className="flex items-center gap-2" onClick={handleLogout}>
+        <MenuItem
+          className="flex items-center gap-2"
+          onClick={async () => await handleLogout()}
+        >
           <ArrowLeftOnRectangleIcon className="w-5" />
           <Typography
             variant="small"

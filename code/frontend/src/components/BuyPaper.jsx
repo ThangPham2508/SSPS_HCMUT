@@ -196,7 +196,7 @@ const BuyPaper = () => {
   }
 
   const handleSubmit = async () => {
-    const qty = combo ? quantity + comboList[combo].pages : quantity;
+    const qty = combo !== null ? quantity + comboList[combo].pages : quantity;
     await updatePage({quantity: qty, id});
     window.location.reload()
   }

@@ -14,7 +14,10 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 import LogList from "../components/LogList";
-import { useGetLogsByUserQuery, useCancelLogMutation } from "../slices/logApiSlice";
+import {
+  useGetLogsByUserQuery,
+  useCancelLogMutation,
+} from "../slices/logApiSlice";
 import { useGetFilesByUserQuery } from "../slices/fileApiSlice";
 import { useGetPrinterQuery } from "../slices/printerApiSlice";
 import { useState } from "react";
@@ -63,17 +66,25 @@ const LogDialog = ({ open, handleOpen, log }) => {
             </div>
           ) : null;
         })}
-        <div className="grid grid-cols-2 mx-3">
+        <div className="mx-3 grid grid-cols-2">
           <Typography variant="h6">Lịch hẹn: </Typography>
-          <Typography>{moment(schedule).format("DD/MM/YYYY, h:mm:ss A")}</Typography>
+          <Typography>
+            {moment(schedule).format("DD/MM/YYYY, h:mm:ss A")}
+          </Typography>
         </div>
       </DialogBody>
-      <DialogFooter className="flex gap-5">
+      <DialogFooter className="flex justify-between">
+        <Button
+          color="red"
+          onClick={() => {
+            cancelLog(log._id);
+            window.location.reload();
+          }}
+        >
+          Hủy
+        </Button>
         <Button color="blue" onClick={handleOpen}>
           OK
-        </Button>
-        <Button color="red" onClick={() => {cancelLog(log._id); window.location.reload()}}>
-          Hủy
         </Button>
       </DialogFooter>
     </Dialog>

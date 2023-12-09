@@ -8,7 +8,7 @@ const login = passport.authenticate("google", {
 const callback = [
   passport.authenticate("google", {
     failureRedirect: "/auth/failure",
-    successRedirect: "http://localhost:5173",
+    successRedirect: "http://localhost:5000",
     session: true,
   }),
 ];
@@ -16,10 +16,11 @@ const callback = [
 const logout = (req, res, next) => {
   req.logout((err) => {
     if (err) {
+      console.log(err);
       return next(err);
     }
-    res.redirect("http://localhost:5173");
   });
+  res.redirect("http://localhost:5000")
 };
 
 const failure = (req, res) => {
@@ -27,6 +28,7 @@ const failure = (req, res) => {
 };
 
 const getProfile = (req, res) => {
+  console.log(req.user);
   if (req.user) {
     User.findOne({ googleId: req.user.googleId })
       .then((user) => {

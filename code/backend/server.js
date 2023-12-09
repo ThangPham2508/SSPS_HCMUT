@@ -8,7 +8,8 @@ import config from "./config.js";
 import cors from "cors";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
-import {start} from "./cronJob.js";
+import { start } from "./cronJob.js";
+import path from "path";
 
 import authRoutes from "./routes/authRoutes.js";
 import printerRoutes from "./routes/printerRoutes.js";
@@ -66,9 +67,13 @@ app.use("/file", fileRoutes);
 app.use("/log", logRoutes);
 app.use("/config", configRoutes);
 
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+);
 
 start();
 

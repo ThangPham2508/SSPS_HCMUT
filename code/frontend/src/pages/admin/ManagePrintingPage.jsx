@@ -1,7 +1,8 @@
 import { VerticalTabs } from "../../components/ManagePrintingPage/VerticalTab.jsx";
 import ButtonList from "../../components/ManagePrintingPage/ButtonList.jsx";
-import { Card, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import FormPaper from "../../components/FormPaper.jsx";
+import Report from "../../components/Report.jsx";
 
 import {
   Cog6ToothIcon,
@@ -34,7 +35,7 @@ const ManagePrintingPage = () => {
       "Xuất báo cáo",
       "3",
       <Cog8ToothIcon className="w-5 h-5" />,
-      <Card />
+      <Report />
     ),
   ];
   return (

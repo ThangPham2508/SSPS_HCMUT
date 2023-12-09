@@ -8,15 +8,12 @@ import {
 } from "@material-tailwind/react";
 import {
   HomeIcon,
-  BookOpenIcon,
   PrinterIcon,
   UserIcon,
   Bars3Icon,
   XMarkIcon,
   ClockIcon,
-  ChatBubbleLeftEllipsisIcon,
   CogIcon,
-  
 } from "@heroicons/react/24/outline";
 import ProfileMenu from "./ProfileMenu";
 import logo from "../assets/logo.png";
@@ -31,7 +28,8 @@ const Header = () => {
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
-  }, []);
+    console.log(role);
+  }, [role]);
 
   const generateNavItem = (icon, to, text) => (
     <Typography
@@ -49,7 +47,7 @@ const Header = () => {
 
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-14">
-      {generateNavItem(<HomeIcon />, "/", "TRANG CHỦ")}
+      {role ? generateNavItem(<HomeIcon />, "/", "TRANG CHỦ") : null}
 
       {role === "customer"
         ? generateNavItem(<ClockIcon />, "/history", "LỊCH SỬ IN")
@@ -59,7 +57,7 @@ const Header = () => {
               "/admin/printer-manage",
               "QUẢN LÝ MÁY IN",
             )
-          : generateNavItem(<BookOpenIcon />, "/instruction", "HƯỚNG DẪN")}
+          : generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
 
       {role === "SPSO"
         ? generateNavItem(
@@ -67,17 +65,13 @@ const Header = () => {
             "/admin/printing-manage",
             "QUẢN LÝ IN ẤN",
           )
-        : generateNavItem(<PrinterIcon />, "/printing", "IN NGAY")}
+        : role === "customer"
+          ? generateNavItem(<PrinterIcon />, "/printing", "IN NGAY")
+          : null}
 
-      {role === "customer"
-        ? generateNavItem(
-            <ChatBubbleLeftEllipsisIcon />,
-            "/feedback",
-            "PHẢN HỒI",
-          )
-        : role === "SPSO"
-          ?  generateNavItem(<ClockIcon />, "/admin/history", "LỊCH SỬ IN")
-          : generateNavItem(<UserIcon />, "/login", "ĐĂNG NHẬP")}
+      {role === "SPSO"
+        ? generateNavItem(<ClockIcon />, "/admin/history", "LỊCH SỬ IN")
+        : null}
     </ul>
   );
 
@@ -100,7 +94,7 @@ const Header = () => {
         </Link>
         <div className="flex items-center gap-5">
           <div className="me-5 hidden lg:block">{navList}</div>
-          {role !== null ? <ProfileMenu /> : null}
+          {role ? <ProfileMenu /> : null}
         </div>
         <IconButton
           variant="text"

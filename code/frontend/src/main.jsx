@@ -4,11 +4,9 @@ import App from "./App.jsx";
 import CustomerRoute from "./components/CustomerRoute";
 import AdminRoute from "./components/AdminRoute";
 import HomePage from "./pages/HomePage";
-import InstructionPage from "./pages/InstructionPage";
 import LoginPage from "./pages/LoginPage";
 import PrintingPage from "./pages/PrintingPage";
 import HistoryPage from "./pages/HistoryPage";
-import FeedbackPage from "./pages/FeedbackPage";
 import ManagePrinterPage from "./pages/admin/ManagePrinterPage";
 import ManagePrintingPage from "./pages/admin/ManagePrintingPage";
 import FilePreviewPage from "./pages/FilePreviewPage.jsx";
@@ -32,15 +30,10 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<App />}>
         <Route index={true} path="/" element={<HomePage />} />
-        <Route path="/instruction" element={<InstructionPage />} />
-<<<<<<< HEAD
-=======
-        <Route path="/printing" element={<PrintingPage />} />
         <Route path="/profile" element={<ProfilePage />} />
->>>>>>> 4e1934bb8cb2e2c331af3bd8ff602ea0fde8eef0
         <Route path="" element={<CustomerRoute />}>
+          <Route path="/printing" element={<PrintingPage />} />
           <Route path="/history" element={<HistoryPage />} />
-          <Route path="/feedback" element={<FeedbackPage />} />
           <Route path="/printing" element={<PrintingPage />} />
           <Route path="/preview/:id" element={<FilePreviewPage />} />
         </Route>

@@ -2,37 +2,29 @@ import {
   Popover,
   PopoverHandler,
   PopoverContent,
-  Button,
 } from "@material-tailwind/react";
 import React from "react";
 import { List, ListItem, Card } from "@material-tailwind/react";
 import { ListItemPrefix, Avatar, Typography } from "@material-tailwind/react";
-import { useState } from "react";
-// import {data} from './Data'
-// let Data=[];
-import { ChipFilter } from "./ChipFilter";
-
-
 
 const Filter = ({handleClick,inputMSSV,setMSSV}) => {
-  
   const Date = () => {
     return (
       <div
-        class="relative mb-3"
+        className="relative mb-3"
         data-te-datepicker-init
         data-te-input-wrapper-init
       >
         <input
           type="date"
-          class="peer-focus:text-primary dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+          className="peer-focus:text-primary dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
           placeholder="Select a date"
           data-te-datepicker-toggle-ref
           data-te-datepicker-toggle-button-ref
         />
         <label
-          for="floatingInput"
-          class="text-neutral-500 peer-focus:text-primary dark:text-neutral-200 dark:peer-focus:text-primary pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
+          htmlFor="floatingInput"
+          className="text-neutral-500 peer-focus:text-primary dark:text-neutral-200 dark:peer-focus:text-primary pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
         >
           Select a date
         </label>
@@ -43,20 +35,19 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
     
     return (
       <div
-        class="relative mb-3"
+        className="relative mb-3"
       >
         <input
           type="text"
-          class="peer-focus:text-primary dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+          className="peer-focus:text-primary dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
           placeholder="INPUT MSSV"
           data-te-datepicker-toggle-ref
           data-te-datepicker-toggle-button-ref
           value={inputMSSV} onChange={(e) => setMSSV(e.target.value)}
-          // onKeyDown={(inputMSSV)=>handleClick(inputMSSV)}
         />
         <label
-          for="floatingInput"
-          class="text-neutral-500 peer-focus:text-primary dark:text-neutral-200 dark:peer-focus:text-primary pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
+          htmlFor="floatingInput"
+          className="text-neutral-500 peer-focus:text-primary dark:text-neutral-200 dark:peer-focus:text-primary pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
         >
           INPUT MSSV
         </label>
@@ -75,7 +66,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
               <Avatar
                 variant="circular"
                 alt="candice"
-                src="src\assets\printer.png"
+                src="src\assets\PrinterImage.png"
               />
             </ListItemPrefix>
             <div>
@@ -92,7 +83,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
               <Avatar
                 variant="circular"
                 alt="alexander"
-                src="src\assets\printer.png"
+                src="src\assets\PrinterImage.png"
               />
             </ListItemPrefix>
             <div>
@@ -109,7 +100,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
               <Avatar
                 variant="circular"
                 alt="emma"
-                src="src\assets\printer.png"
+                src="src\assets\PrinterImage.png"
               />
             </ListItemPrefix>
             <div>
@@ -132,7 +123,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
         <PopoverHandler>
           <button className="w-full">Danh sách máy in</button>
         </PopoverHandler>
-        <PopoverContent>
+        <PopoverContent className="z-20">
           <ListPrinter />
         </PopoverContent>
       </Popover>
@@ -146,7 +137,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
         <PopoverHandler>
           <button className="w-full">MSSV</button>
         </PopoverHandler>
-        <PopoverContent>
+        <PopoverContent className="z-20">
           <MSSV/>
         </PopoverContent>
       </Popover>
@@ -159,7 +150,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
         <PopoverHandler>
           <button className="w-full">Nhập khoảng thời gian</button>
         </PopoverHandler>
-        <PopoverContent>
+        <PopoverContent className="z-20">
           <Date />
         </PopoverContent>
       </Popover>
@@ -169,7 +160,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
   function FilterIcon() {
     return (  
       <svg
-        class="text-white-600 h-6 w-6 p-0"
+        className="text-white-600 h-6 w-6 p-0"
         xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"
@@ -178,9 +169,9 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
         stroke="currentColor"
       >
         <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
         />{" "}
       </svg>
@@ -192,7 +183,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
     const setSelectedItem = (value) => setSelected(value);
   
     return (
-      <Card className="w-46">
+      <Card className="w-46 z-20">
         <List>
           <ListItem
             selected={selected === 1}
@@ -222,7 +213,7 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
     const setSelectedItem = (value) => setSelected(value);
   
     return (
-      <Card className="w-46">
+      <Card className="w-46 z-20">
         <List>
           <ListItem
             selected={selected === 1}
@@ -257,15 +248,11 @@ const Filter = ({handleClick,inputMSSV,setMSSV}) => {
           <FilterIcon />
         </button>
       </PopoverHandler>
-      <PopoverContent>
+      <PopoverContent className="z-10">
         <span>Lựa chọn kiểu filter</span>
         <ListWithSelectedItem typeUser="spso" />
-        {/* <ListPrinter/> */}
       </PopoverContent>
     </Popover>
-    <div className ="flex">
-    
-    </div>
     </>
   );
 };

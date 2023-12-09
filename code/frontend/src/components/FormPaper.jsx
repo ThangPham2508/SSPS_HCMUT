@@ -29,8 +29,8 @@ const FormPaper = () => {
   }, [defaults])
 
   const handleSubmit = () => {
-    console.log(numericValue, new Date(selectedDate))
     updateDefaults({defaultPages: numericValue, distributionDates: new Date(selectedDate)});
+    window.location.reload();
   }
 
   return (

@@ -19,6 +19,7 @@ const createPrintingLog = async (req, res) => {
 const getPrintingLogs = async (req, res) => {
   try {
     const logs = await PrintingLog.find({});
+    logs.sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
     res.send(logs);
   } catch (error) {
     res.status(500).send(error);
@@ -42,16 +43,28 @@ const cancelPrintingLog = async (req, res) => {
     const log = await PrintingLog.findById(req.params.id);
 
     if (!log) {
-      return res.status(404).json({ message: 'Log not found' });
+      return res.status(404).json({ message: "Log not found" });
     }
 
-    log.status = 'cancelled';
-    await log.save();
+    if (log.status !== "completed" && log.status !== "cancelled") {
+      log.status = "cancelled";
 
-    res.json({ message: 'Log status updated to cancelled' });
+      const printer = await Printer.findById(log.printerId);
+      if (printer) {
+        printer.queue = Math.max(0, printer.queue - 1);
+        await printer.save();
+      }
+
+      await log.save();
+      res.json({ message: "Log status updated to cancelled" });
+    } else {
+      res.json({
+        message: "Log status is already completed and cannot be cancelled",
+      });
+    }
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -69,12 +82,13 @@ const deletePrintingLog = async (req, res) => {
 
 const getPrintingLogsByUser = async (req, res) => {
   try {
-    const logs = await PrintingLog.find({userId: req.user._id});
+    const logs = await PrintingLog.find({ userId: req.user._id });
+    logs.sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
     res.send(logs);
   } catch (error) {
     res.status(500).send(error);
   }
-}
+};
 
 export {
   createPrintingLog,
@@ -82,5 +96,5 @@ export {
   getPrintingLog,
   cancelPrintingLog,
   deletePrintingLog,
-  getPrintingLogsByUser
+  getPrintingLogsByUser,
 };

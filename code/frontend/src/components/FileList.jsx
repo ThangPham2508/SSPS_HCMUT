@@ -2,6 +2,8 @@ import filetype from "../assets/filetypeicon/filetype";
 import { CheckIcon, ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 import { Button, Card } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
+import { useState } from "react";
 
 const statusIcon = {
   verified: <CheckIcon className="w-5" />,
@@ -18,14 +20,17 @@ const FileItem = ({ file }) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
+
   return (
-    <Card className={`mx-1/8 mb-[30px] grid h-40 w-full grid-cols-11 p-5 gap-5`}>
+    <Card
+      className={`mx-1/8 mb-[30px] grid h-40 w-full grid-cols-11 gap-5 p-5`}
+    >
       <div className="col-span-1">
         <img src={filetype[file.type]} alt="" className="w-full p-[10px]" />
       </div>
       <div className="col-span-3">
         <div className="h-full grid-rows-2">
-          <p className="flex h-1/2 items-center font-semibold truncate">
+          <p className="flex h-1/2 items-center truncate font-semibold">
             {file.name.substring(0, 60)}
           </p>
           {file.pageNum === 0 ? null : (
@@ -67,13 +72,28 @@ const FileItem = ({ file }) => {
 };
 
 const FileList = ({ files }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = files
+    ?.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="flex flex-col gap-5">
-      {files?.map((file, index) => {
-        return <FileItem key={index} file={file} />;
+      {currentItems?.map((file) => {
+        return <FileItem key={file._id} file={file} />;
       })}
-      
+      <div className="self-end">
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          totalItems={files?.length}
+          paginate={paginate}
+        />
+      </div>
     </div>
   );
 };

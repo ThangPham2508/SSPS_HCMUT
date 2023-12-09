@@ -26,6 +26,7 @@ const createFile = async (req, res) => {
 const getFiles = async (req, res) => {
   try {
     const files = await File.find({});
+    files.sort((a, b) => new Date(b.uploadTime) - new Date(a.uploadTime));
     res.send(files);
   } catch (error) {
     res.status(500).send(error);
@@ -97,7 +98,6 @@ const getStoredFile = async (req, res) => {
       return res.status(404).send();
     }
 
-    console.log(filePath);
     res.sendFile(filePath);
   } catch (error) {
     console.log(error);
@@ -108,6 +108,7 @@ const getStoredFile = async (req, res) => {
 const getFilesByUser = async (req, res) => {
   try {
     const files = await File.find({userId: req.user._id});
+    files.sort((a, b) => new Date(b.uploadTime) - new Date(a.uploadTime));
     res.send(files);
   } catch (error) {
     res.status(500).send(error);
