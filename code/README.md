@@ -30,18 +30,8 @@ npm --version
 
 ### Usage
 Do the following steps: 
-#### Setup
-- Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
-####   Env Variables
-Rename the `.env.example` file to `.env` and add the following
-```
-PORT = 5000
-MONGO_URI = your mongodb uri
-CLIENT_ID=364725832565-sdipbuf9vroi58bv7enof7jqd1g6rg04.apps.googleusercontent.com
-CLIENT_SECRET=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
-COOKIE_KEY_1=secret
-COOKIE_KEY_2=secretter
-```
+#### Setup database
+- You can replace our MongoDB URI with your own in .env file. 
 #### Install Dependencies
 - Make sure you are in /code folder.
 ```
@@ -61,3 +51,7 @@ npm run data:import
 ```
 npm run dev
 ```
+#### Login
+- At the login screen, select the role you want to login as, either Customer or SPSO.
+- Login with a hcmut email account.
+- **Note that only one role can be assigned to each mail**. You'll need two hcmut email accounts to test two different roles.

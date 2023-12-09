@@ -12,7 +12,7 @@ const AUTH_OPTIONS = {
 
 function verifyCallback(req, accessToken, refreshToken, profile, done) {
   User.findOne({ googleId: profile.id }).then((existingUser) => {
-    if (existingUser && existingUser.role === req.session.role) {
+    if (existingUser) {
       done(null, existingUser);
       console.log("User already exists");
     } else {
