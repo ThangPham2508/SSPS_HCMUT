@@ -13,7 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../slices/authSlice";
+import { logout } from "../slices/authslice";
 import { useSelector } from "react-redux";
 
 const ProfileMenu = () => {
@@ -22,7 +22,7 @@ const ProfileMenu = () => {
   const { avatar, role } = useSelector((state) => state.auth.userData);
 
   const handleLogout = async () => {
-    window.open("/auth/logout", "_self");
+    window.open("http://localhost:5000/auth/logout", "_self");
     dispatch(logout());
   };
 
